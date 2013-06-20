@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/window_bgcolor"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/list_popwin"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="list悬浮"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/grid_popwin"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:text="grid悬浮"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/edittext"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:paddingLeft="3dp"
+            android:singleLine="true"
+            android:text="选择" />
+        <Button
+        android:id="@+id/refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:text="恢复"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+    </LinearLayout>
+
+    
+
+</LinearLayout>

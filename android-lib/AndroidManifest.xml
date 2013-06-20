@@ -127,6 +127,7 @@
 		<activity android:name="lib.func.handwrite.HandwritingActivity"></activity>
 		<activity android:name="lib.ui.ImageListViewActivity"></activity>
 		<activity android:name="lib.func.contact.ContactActivity"></activity>
+		<activity android:name="lib.ui.select.SelectActivity"></activity>
 		
 		
    		<meta-data

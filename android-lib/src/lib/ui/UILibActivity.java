@@ -10,6 +10,7 @@ import lib.ui.list.list1.SelfListViewActivity;
 import lib.ui.location.CellActivity;
 import lib.ui.location.LocationActivity;
 import lib.ui.menu.MenuActivity;
+import lib.ui.select.SelectActivity;
 import lib.ui.share.ShareSdkActivity;
 import android.app.Activity;
 import android.app.Notification;
@@ -44,6 +45,17 @@ public class UILibActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        
+        Button selectPopwindow = (Button)findViewById(R.id.selectPopwindow);
+        selectPopwindow.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,SelectActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button contact = (Button)findViewById(R.id.contact);
         contact.setOnClickListener(new OnClickListener()
