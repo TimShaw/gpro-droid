@@ -1,5 +1,6 @@
 package lib.func.contact;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -9,14 +10,17 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.Contacts.People;
-import android.provider.Contacts;
 import android.provider.ContactsContract;
+import android.provider.ContactsContract.CommonDataKinds;
+import android.provider.ContactsContract.CommonDataKinds.Email;
+import android.provider.ContactsContract.CommonDataKinds.GroupMembership;
 import android.provider.ContactsContract.CommonDataKinds.Im;
 import android.provider.ContactsContract.CommonDataKinds.Nickname;
 import android.provider.ContactsContract.CommonDataKinds.Note;
 import android.provider.ContactsContract.CommonDataKinds.Organization;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.provider.ContactsContract.Data;
+import android.provider.ContactsContract.Groups;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -215,7 +219,62 @@ public class ContactDao {
 		}
 
 	}
+	public static List<Long> getGroupIdByContactId(Context context,Long contactId){
+		List<Long> groupIdList = new ArrayList<Long>();
+	    Uri uri = Data.CONTENT_URI;
+	    String where = String.format(
+	            "%s = ? AND %s = ?",
+	            Data.MIMETYPE,
+	            GroupMembership.CONTACT_ID);
 
+	    String[] whereParams = new String[] {
+	               GroupMembership.CONTENT_ITEM_TYPE,
+	               Long.toString(contactId),
+	    };
+
+	    String[] selectColumns = new String[]{
+	            GroupMembership.GROUP_ROW_ID,
+	    };
+
+
+	    Cursor groupIdCursor = context.getContentResolver().query(
+	            uri, 
+	            selectColumns, 
+	            where, 
+	            whereParams, 
+	            null);
+	    try{
+	        while (groupIdCursor.moveToNext()) {
+	        	groupIdList.add(groupIdCursor.getLong(0));
+	        }
+	        return groupIdList; // Has no group ...
+	    }finally{
+	        groupIdCursor.close();
+	    }
+	}
+	
+	public static String getGroupNameByGroupId(Context context,long groupId){
+	    Uri uri = Groups.CONTENT_URI;
+	    String where = String.format("%s = ?", Groups._ID);
+	    String[] whereParams = new String[]{Long.toString(groupId)};
+	    String[] selectColumns = {Groups.TITLE};
+	    Cursor c = context.getContentResolver().query(
+	            uri, 
+	            selectColumns,
+	            where, 
+	            whereParams, 
+	            null);
+
+	    try{
+	        if (c.moveToFirst()){
+	            return c.getString(0);  
+	        }
+	        return null;
+	    }finally{
+	        c.close();
+	    }
+	}
+	
 	public static void printContacts(Context context) {
 
 		Cursor cur = context.getContentResolver().query(
@@ -234,18 +293,31 @@ public class ContactDao {
 					.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
 			int phoneCountColumn = cur
 					.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER);
+			String customRingtone = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.CUSTOM_RINGTONE));
+			
 			do {
 				StringBuilder contactInfo = new StringBuilder();
-				String contactId = cur.getString(idColumn);
+				long contactId = cur.getLong(idColumn);
 				String disPlayName = cur.getString(displayNameColumn);
-				contactInfo.append(ContactsContract.Contacts.DISPLAY_NAME + ":"
-						+ disPlayName);
 				int phoneCount = cur.getInt(phoneCountColumn);
-				contactInfo.append(ContactsContract.Contacts.HAS_PHONE_NUMBER
-						+ ":" + phoneCount);
+				contactInfo.append(ContactsContract.Contacts.DISPLAY_NAME + ":"+ disPlayName+
+						","+ContactsContract.Contacts.HAS_PHONE_NUMBER+ ":" + phoneCount+
+						",customRingtone:"+customRingtone);
+				
 				contactInfo.append(",<->,");
 				Log.i(TAG, contactInfo.toString());
-
+				
+				/*获取分组信息*/
+				List<Long> groupIdList = ContactDao.getGroupIdByContactId(context, contactId);
+				if(groupIdList.size()>0){
+					for(Long groupId:groupIdList){
+						String groupName = ContactDao.getGroupNameByGroupId(context, groupId);
+						if(groupName!=null){
+							Log.i(TAG,"groupName:"+groupName+",groupId:"+groupId);
+						}
+					}
+				}
+				
 				/* 获取该联系人地址 */
 				Cursor addressCursor = context
 						.getContentResolver()
@@ -270,9 +342,30 @@ public class ContactDao {
 						String formatAddress = addressCursor
 								.getString(addressCursor
 										.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.FORMATTED_ADDRESS));
+						String typeLabel = "";
+						int type = addressCursor
+								.getInt(addressCursor
+										.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.TYPE));
+						switch (type) {
+							case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_HOME:
+								typeLabel = "家庭地址";
+								break;
+							case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_OTHER:
+								typeLabel = "其他地址";
+								break;	
+							case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_WORK:
+								typeLabel = "工作地址";
+								break;	
+							case ContactsContract.CommonDataKinds.StructuredPostal.TYPE_CUSTOM:
+								typeLabel = addressCursor.getString(addressCursor
+										.getColumnIndex(ContactsContract.CommonDataKinds.StructuredPostal.LABEL));
+								break;		
+							default:
+								break;
+						}
 						Log.i(TAG, "street:" + street + ",city：" + city
 								+ ",region：" + region + ",postCode:" + postCode
-								+ ",formatAddress:" + formatAddress);
+								+ ",formatAddress:" + formatAddress+",typeLabel:"+typeLabel);
 
 					} while (addressCursor.moveToNext());
 					addressCursor.close();
@@ -283,16 +376,24 @@ public class ContactDao {
 						null,
 						ContactsContract.CommonDataKinds.Phone.CONTACT_ID
 								+ " = " + contactId, null, null);
+				
 				if (emailCursor.moveToFirst()) {
 					do {
-						String emailType = emailCursor
-								.getString(emailCursor
+						int emailType = emailCursor
+								.getInt(emailCursor
 										.getColumnIndex(ContactsContract.CommonDataKinds.Email.TYPE));
 						String emailValue = emailCursor
 								.getString(emailCursor
 										.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+						String emailTypeLabel  ="";
+						/*if(emailType == Email.TYPE_CUSTOM){
+							emailTypeLabel = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.LABEL));
+						}else{
+							
+						}*/
+						emailTypeLabel = Email.getTypeLabel(context.getResources(), emailType, null).toString();
 						Log.i(TAG, "emailType:" + emailType + ",emailValue"
-								+ emailValue);
+								+ emailValue+",emailTypeLabel:"+emailTypeLabel);
 					} while (emailCursor.moveToNext());
 					emailCursor.close();
 				}
@@ -303,7 +404,7 @@ public class ContactDao {
 						new String[] { Data._ID, Im.PROTOCOL, Im.DATA },
 						Data.CONTACT_ID + "=?" + " AND " + Data.MIMETYPE + "='"
 								+ Im.CONTENT_ITEM_TYPE + "'",
-						new String[] { contactId }, null);
+						new String[] { String.valueOf(contactId) }, null);
 				if (IMCursor.moveToFirst()) {
 					do {
 						String protocol = IMCursor.getString(IMCursor
@@ -319,10 +420,10 @@ public class ContactDao {
                 Cursor organizationCursor = context.getContentResolver().query(  
                         Data.CONTENT_URI,  
                         new String[] { Data._ID, Organization.COMPANY,  
-                                Organization.TITLE,Organization.TYPE},  
+                                Organization.TITLE,Organization.TYPE,Organization.LABEL},  
                         Data.CONTACT_ID + "=?" + " AND " + Data.MIMETYPE + "='"  
                                 + Organization.CONTENT_ITEM_TYPE + "'",  
-                        new String[] { contactId }, null);  
+                        new String[] { String.valueOf(contactId) }, null);  
                 if (organizationCursor.moveToFirst()) {  
                     do {  
                         String company = organizationCursor.getString(organizationCursor  
@@ -332,8 +433,9 @@ public class ContactDao {
                         int type = organizationCursor.getInt(organizationCursor  
                                 .getColumnIndex(Organization.TYPE));
                         String typeLabel = "";
+                        
                         if (type == Organization.TYPE_CUSTOM) {
-                        	typeLabel = cur.getString(organizationCursor
+                        	typeLabel = organizationCursor.getString(organizationCursor
                                 		.getColumnIndex(Organization.LABEL));
                         }else if (type == Organization.TYPE_WORK){
                         	typeLabel = "公司";	
@@ -350,7 +452,7 @@ public class ContactDao {
                         new String[] { Data._ID, Note.NOTE },  
                         Data.CONTACT_ID + "=?" + " AND " + Data.MIMETYPE + "='"  
                                 + Note.CONTENT_ITEM_TYPE + "'",  
-                        new String[] { contactId }, null);  
+                        new String[] { String.valueOf(contactId) }, null);  
                 if (noteCursor.moveToFirst()) {  
                     do {  
                         String noteinfo = noteCursor.getString(noteCursor  
@@ -366,7 +468,7 @@ public class ContactDao {
                         new String[] { Data._ID, Nickname.NAME },  
                         Data.CONTACT_ID + "=?" + " AND " + Data.MIMETYPE + "='"  
                                 + Nickname.CONTENT_ITEM_TYPE + "'",  
-                        new String[] { contactId }, null);  
+                        new String[] { String.valueOf(contactId) }, null);  
                 if (nicknameCursor.moveToFirst()) {  
                     do {  
                         String nickname_ = nicknameCursor.getString(nicknameCursor  
@@ -392,14 +494,38 @@ public class ContactDao {
 										+ ":"
 										+ phoneCursor.getString(phoneCursor
 												.getColumnIndex(cName)) + ",");
-							}*/
-							//Log.i(TAG, contactInfo.toString());
+							}
+							Log.i(TAG, contactInfo.toString());*/
 							String phoneNumber = phoneCursor  
                                     .getString(phoneCursor  
                                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));  
-                            String phoneType = phoneCursor  
-                                    .getString(phoneCursor  
+                            int phoneType = phoneCursor  
+                                    .getInt(phoneCursor  
                                             .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE)); 
+                            String phoneTypeLabel = "";
+                            switch (phoneType) {
+							case CommonDataKinds.Phone.TYPE_WORK:
+								phoneTypeLabel = "工作电话";
+								break;
+							case CommonDataKinds.Phone.TYPE_HOME:
+								phoneTypeLabel = "家庭电话";
+								break;
+							case CommonDataKinds.Phone.TYPE_MOBILE:
+								phoneTypeLabel = "手机";
+								break;
+							case CommonDataKinds.Phone.TYPE_FAX_WORK:
+								phoneTypeLabel = "工作传真";
+								break;
+							case CommonDataKinds.Phone.TYPE_FAX_HOME:
+								phoneTypeLabel = "家庭传真";
+								break;
+							case CommonDataKinds.Phone.TYPE_COMPANY_MAIN:
+								phoneTypeLabel = "工作电话";
+								break;
+							
+							default:
+								break;
+							}
                             Log.i(TAG,"phoneNumber:"+phoneNumber+",phoneType:"+phoneType);
 						} while (phoneCursor.moveToNext());
 						phoneCursor.close();
