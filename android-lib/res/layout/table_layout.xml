@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="@drawable/bg"
+    >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TableLayout
+            android:id="@+id/showControlTable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:shrinkColumns="*"
+            android:stretchColumns="*" >
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_vertical" >
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:layout_span="3"
+                    android:paddingTop="30dp"
+                    android:text="平台控制器"
+                    android:textSize="30dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow12"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|center_vertical" >
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:layout_span="3"
+                    android:paddingTop="10dp"
+                    android:text="同步中"
+                    android:textSize="18dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:gravity="center|center_vertical" >
+
+                <Button
+                    android:id="@+id/button1"
+                    android:background="@drawable/button_bg"
+                    android:text="上一页"
+                    android:textColor="@color/button_text"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:background="@drawable/button_bg"
+                    android:text="下一页"
+                    android:textColor="@color/button_text"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:background="@drawable/button_bg"
+                    android:text="同步"
+                    android:textColor="@color/button_text"
+                    android:textSize="12dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:gravity="left|center_vertical" >
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_span="1"
+                    android:background="@drawable/button_bg"
+                    android:text="向上键"
+                    android:textColor="@color/button_text"
+                    android:textSize="25dp" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="100dp"
+                    android:layout_height="80dp"
+                    android:layout_span="1"
+                    android:background="@drawable/button_bg"
+                    android:text="向下键"
+                    android:textColor="@color/button_text"
+                    android:textSize="25dp" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+    
+    
+
+</LinearLayout>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/popMenu"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+        
+        <Button
+            android:id="@+id/contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="contact"
+            />
+        
+        <Button
+            android:id="@+id/imageList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="imageList"
+            />
+	
+        <Button
+            android:id="@+id/handwriting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="handwriting"
+            />
+	
+		<Button
+            android:id="@+id/wheel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wheel"
+            />
+        <Button
+            android:id="@+id/image_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="image_grid"
+            />
+        <Button
+            android:id="@+id/image_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="image_gallery"
+            />
+        
+        <Button
+            android:id="@+id/backup_restore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="backup and restore"
+            />
+        
+        
+        <Button
+            android:id="@+id/screenshot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="screenshot"
+            />
+        <Button
+            android:id="@+id/celllocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="celllocation"
+            />
+        <Button
+            android:id="@+id/location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="location"
+            />
+		<Button
+            android:id="@+id/shareSdk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="shareSdk"
+            />
+        <Button
+            android:id="@+id/shareQQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="shareQQ"
+            />
+        <Button
+            android:id="@+id/googlemap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="googlemap"
+            />
+        <Button
+            android:id="@+id/dialogShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dialogShow"
+            />
+        
+        <Button
+            android:id="@+id/selfListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义listview"
+            />
+        
+        
+        <TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:text="开始时间"
+	    />
+	<EditText 
+	    android:id="@+id/inputDate"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:inputType="none"
+		android:focusable="false"	    
+	    />
+        
+        <lib.ui.SlideButton
+            android:id="@+id/slipBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginLeft="100dp" />
+
+        
+        <Button
+            android:id="@+id/sendNotiBt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="消息发送"
+            />
+        
+        <Button
+            android:id="@+id/left_first"
+            android:layout_width="69.3dp"
+            android:layout_height="120dp"
+            android:background="@drawable/icon_exit" />
+
+        <Button
+            android:id="@+id/left_first"
+            android:layout_width="51.3dp"
+            android:layout_height="264dp"
+            android:background="@drawable/scale_exit2"
+            android:gravity="bottom"
+            android:text="exit"
+            android:textColor="#FF0000" />
+        <Button
+            android:id="@+id/notibar_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:text="notibar_icon"
+            android:textColor="#FF0000" />
+<WebView
+        android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+      />
+        <!--
+	<ImageView 
+        android:layout_width="102.6dp"
+        android:layout_height="102.6dp"
+        android:src="@drawable/scale_exit"
+       
+        />
+	
+	<ImageView 
+        android:layout_width="51.3dp"
+        android:layout_height="102.6dp"
+        android:src="@drawable/icon_exit"
+        />
+        -->
+
+        <Button
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="tableLayout"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/MenuActivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MenuActivity"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+</ScrollView>

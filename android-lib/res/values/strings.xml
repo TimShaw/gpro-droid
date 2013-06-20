@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    
+    <string name="app_name">Lib</string>
+    
+ 
+	<string name="share">分享</string>
+	<string name="website">http://www.inq.com.cn</string>
+	<string name="share_content">分享快乐无限、无限快乐...</string>
+	<string name="share_content_short">分享快乐无限...</string>
+	
+	<string name="demo_share_all_gui">分享全部（有分享界面）</string>
+    <string name="demo_share_all">分享全部（无界面，直接分享）</string>
+    <string name="demo_get_access_token">获取AccessToken</string>
+	<string name="demo_get_my_info">获取授权用户资料</string>
+    <string name="demo_get_other_info">获取其他用户资料</string>
+	<string name="demo_share_to_sw">分享新浪微博</string>
+	<string name="demo_share_to_tc">分享腾讯微博</string>
+	<string name="demo_share_to_fb">分享Facebook</string>
+	<string name="demo_share_to_tw">分享twitter</string>
+	<string name="demo_share_to_rr">分享人人网</string>
+	<string name="demo_share_to_qz">分享QQ空间</string>
+	<string name="demo_share_to_db">分享豆瓣</string>
+	<string name="demo_share_to_en">分享印像笔记</string>
+	<string name="demo_share_to_nemb">分享网易微博</string>
+	<string name="demo_share_to_kx">分享开心网</string>
+	<string name="demo_share_to_sh">分享搜狐微博</string>
+	
+	<string name="more">更多</string>
+    <string name="sm_item_demo">接口</string>
+    <string name="sm_item_auth">授权</string>
+    <string name="sm_item_wechat">微信</string>
+    <string name="sm_item_fl_weibo">关注新浪微博</string>
+    <string name="sm_item_fl_tc">关注腾讯微博</string>
+    <string name="sm_item_visit_wechat">关注官方微信</string>
+    <string name="sm_item_visit_website">关注官方网站</string>
+    <string name="sm_item_about">Demo版本 Ver. %s</string>
+    <string name="plz_choose_wechat">请选择微信客户端完成操作</string>
+</resources>
