@@ -12,6 +12,13 @@
         android:orientation="vertical" >
         
         <Button
+            android:id="@+id/floatondesktop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="floatondesktop"
+            />
+        
+        <Button
             android:id="@+id/selectPopwindow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

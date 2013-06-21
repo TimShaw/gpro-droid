@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="270dp"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
     >
 	<LinearLayout 
-		android:layout_width="wrap_content"
+		android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:gravity="center_horizontal"
 	    android:background="@drawable/color_bg"
@@ -17,17 +17,17 @@
 	>
 	  <GridView
         android:id="@+id/gridView1"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:listSelector="@android:color/transparent"
         android:verticalSpacing="15dp"
-        android:horizontalSpacing="10dp"
+        android:horizontalSpacing="13dp"
         android:numColumns="4" >
     	</GridView>  
 	    
 	</LinearLayout>
     <LinearLayout 
-		android:layout_width="wrap_content"
+		android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:gravity="center"
 	    android:padding="0dp"

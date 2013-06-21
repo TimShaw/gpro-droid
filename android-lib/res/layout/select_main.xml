@@ -16,17 +16,27 @@
             android:id="@+id/list_popwin"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:text="list悬浮"
+            android:text="城市选择"
             android:textColor="#000000"
             android:textSize="20sp" />
-
+		
         <Button
-            android:id="@+id/grid_popwin"
+            android:id="@+id/list_thickness_popwin"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:text="grid悬浮"
+            android:text="线条选择"
             android:textColor="#000000"
             android:textSize="20sp" />
+        
+        
+        <ImageView 
+            android:id="@+id/grid_popwin"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@color/black"
+            />
+        
+        
     </LinearLayout>
 
     <LinearLayout

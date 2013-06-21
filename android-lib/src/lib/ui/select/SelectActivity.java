@@ -7,16 +7,16 @@ import lib.ui.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
 import android.widget.BaseAdapter;
@@ -44,7 +44,7 @@ public class SelectActivity extends Activity implements Callback
     // 自定义Adapter
     private OptionAdapter     optionsAdapter    = null;
     
-    
+    private ThicknessAdapter thicknessAdapter =null;
     private GridAdapter gridAdapter = null;
     // 下拉框选项数据源
     private ArrayList<String> datas             = new ArrayList<String>();
@@ -66,7 +66,8 @@ public class SelectActivity extends Activity implements Callback
     private boolean           flag              = false;
     
     private GridView gridView =null;
-
+    private ImageView gridPopWinBtn;
+    
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -116,7 +117,7 @@ public class SelectActivity extends Activity implements Callback
             }
         });
         
-        Button gridPopWinBtn = (Button) findViewById(R.id.grid_popwin);
+        gridPopWinBtn = (ImageView) findViewById(R.id.grid_popwin);
         gridPopWinBtn.setOnClickListener(new View.OnClickListener()
         {
 
@@ -130,6 +131,24 @@ public class SelectActivity extends Activity implements Callback
                 }
             }
         });
+        
+        Button thicknessListPopWinBtn = (Button) findViewById(R.id.list_thickness_popwin);
+        
+        thicknessListPopWinBtn.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                if (flag)
+                {
+                    // 显示PopupWindow窗口
+                    popupThickListWindwShowing();
+                }
+            }
+        });
+        
+        
         
         // 初始化PopupWindow
         //initPopuWindow();
@@ -177,6 +196,21 @@ public class SelectActivity extends Activity implements Callback
         selectPopupWindow.setBackgroundDrawable(new BitmapDrawable());
     }
     
+    
+    private void initPopuThicknessListWindow()
+    {
+        // PopupWindow浮动下拉框布局
+        View selectPopWindowView = (View) this.getLayoutInflater().inflate(R.layout.select_list_popwindow, null);
+        listView = (ListView) selectPopWindowView.findViewById(R.id.list);
+        // 设置自定义Adapter
+        thicknessAdapter = new ThicknessAdapter(this);
+        listView.setAdapter(thicknessAdapter);
+        selectPopupWindow = new PopupWindow(selectPopWindowView, pwidth, LayoutParams.WRAP_CONTENT, true);
+        selectPopupWindow.setOutsideTouchable(true);
+        /* 这一句是为了实现弹出PopupWindow后，当点击屏幕其他部分及Back键时PopupWindow会消失， */
+        selectPopupWindow.setBackgroundDrawable(new BitmapDrawable());
+    }
+    
     private void initPopuGridWindow()
     {
         // PopupWindow浮动下拉框布局
@@ -185,7 +219,7 @@ public class SelectActivity extends Activity implements Callback
         // 设置自定义Adapter
         gridAdapter = new GridAdapter(this);
         gridView.setAdapter(gridAdapter);
-        selectPopupWindow = new PopupWindow(selectPopWindowView, pwidth, LayoutParams.WRAP_CONTENT, true);
+        selectPopupWindow = new PopupWindow(selectPopWindowView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
         selectPopupWindow.setOutsideTouchable(true);
         /* 这一句是为了实现弹出PopupWindow后，当点击屏幕其他部分及Back键时PopupWindow会消失， */
         selectPopupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -196,7 +230,11 @@ public class SelectActivity extends Activity implements Callback
         initPopuListWindow();
         selectPopupWindow.showAsDropDown(parent, 0, -3);
     }
-
+    public void popupThickListWindwShowing()
+    {
+        initPopuThicknessListWindow();
+        selectPopupWindow.showAsDropDown(parent, 0, -3);
+    }
     public void popupGridWindwShowing(){
         initPopuGridWindow();
         selectPopupWindow.showAsDropDown(parent, 0, -3);
@@ -291,6 +329,79 @@ public class SelectActivity extends Activity implements Callback
         }
 
     }
+    
+    class ThicknessAdapter extends BaseAdapter{
+        
+        private int[] thicknessArray;
+        private Context ctx;
+        private ThicknessAdapter(Context ctx){
+            this.ctx = ctx;
+            thicknessArray = new int[5];
+            thicknessArray[0] = 1;
+            thicknessArray[1] = 2;
+            thicknessArray[2] = 3;
+            thicknessArray[3] = 4;
+            thicknessArray[4] = 5;
+        }
+        
+        @Override
+        public int getCount()
+        {
+            return thicknessArray.length;
+        }
+
+        @Override
+        public Object getItem(int position)
+        {
+            // TODO Auto-generated method stub
+            return thicknessArray[position];
+        }
+
+        @Override
+        public long getItemId(int position)
+        {
+            // TODO Auto-generated method stub
+            return position;
+        }
+        ViewHolder3 holder3;
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent)
+        {
+            if(convertView==null){
+                holder3 = new ViewHolder3();
+                convertView = LayoutInflater.from(ctx).inflate(R.layout.select_list_thickness_item, null);
+                holder3.thicknessBtn = (Button)convertView.findViewById(R.id.thickness);
+                convertView.setTag(holder3);
+             }else{
+                holder3 = (ViewHolder3)convertView.getTag();
+             }
+            int thickness = this.thicknessArray[position];
+            holder3.thicknessBtn.setHeight(thickness);
+            convertView.setOnTouchListener(new OnTouchListener()
+            {
+                @Override
+                public boolean onTouch(View v, MotionEvent event)
+                {
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
+                        v.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
+                    }else if(event.getAction() == MotionEvent.ACTION_UP){
+                        v.setBackgroundColor(ctx.getResources().getColor(android.R.color.transparent));
+                        selectPopupWindow.dismiss();
+                    }
+                    return false;
+                }
+            });
+            return convertView;
+        }
+        
+    }
+    
+    
+    class ViewHolder3{
+        Button thicknessBtn;
+    }
+    
     class GridAdapter extends BaseAdapter {  
         private int[] colors; 
         private Context      ctx;
@@ -332,21 +443,35 @@ public class SelectActivity extends Activity implements Callback
         }  
   
         @Override  
-        public View getView(int position, View convertView, ViewGroup parent) {  
+        public View getView(final int position, View convertView, ViewGroup parent) {  
             // TODO Auto-generated method stub  
             if(convertView==null){
                holder2 = new ViewHolder2();
                convertView = LayoutInflater.from(ctx).inflate(R.layout.select_grid_item, null);
-               holder2.imageView = (ImageView)convertView.findViewById(R.id.imageView1);
+               holder2.imageView = (Button)convertView.findViewById(R.id.imageView1);
                convertView.setTag(holder2);
             }else{
                holder2 = (ViewHolder2)convertView.getTag();
             }
             convertView.setLayoutParams(new GridView.LayoutParams(50, 50));
-            Resources res = this.ctx.getResources(); 
+            final Resources res = this.ctx.getResources(); 
             /*Bitmap bitmap = BitmapFactory.decodeResource(res,R.drawable.ic_launcher);  
             holder2.imageView.setImageBitmap(bitmap);*/
             holder2.imageView.setBackgroundColor(res.getColor(colors[position]));
+            holder2.imageView.setText("  ");
+            convertView.setOnTouchListener(new OnTouchListener()
+            {
+                @Override
+                public boolean onTouch(View v, MotionEvent event)
+                {
+                    if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    }else if(event.getAction() == MotionEvent.ACTION_UP){
+                        gridPopWinBtn.setBackgroundColor(res.getColor(colors[position]));
+                        selectPopupWindow.dismiss();
+                    }
+                    return false;
+                }
+            });
             return convertView;  
         }  
         
@@ -358,7 +483,7 @@ public class SelectActivity extends Activity implements Callback
     }
     class ViewHolder2
     {
-        public ImageView imageView;
+        public Button imageView;
     }
 
 }

@@ -3,6 +3,7 @@ package lib.ui;
 
 import lib.func.ScreenShot;
 import lib.func.contact.ContactActivity;
+import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
 import lib.ui.dialog.Tip;
 import lib.ui.layout.TableLayout;
@@ -45,6 +46,16 @@ public class UILibActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        Button floatondesktop = (Button)findViewById(R.id.floatondesktop);
+        floatondesktop.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,FloatOnDescktopActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button selectPopwindow = (Button)findViewById(R.id.selectPopwindow);
         selectPopwindow.setOnClickListener(new OnClickListener()
