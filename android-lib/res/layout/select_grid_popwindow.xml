@@ -19,7 +19,6 @@
         android:id="@+id/gridView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:listSelector="@android:color/transparent"
         android:verticalSpacing="15dp"
         android:horizontalSpacing="13dp"
         android:numColumns="4" >

@@ -19,6 +19,8 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.WindowManager.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * @ClassName: SelectActivity.java
@@ -67,6 +70,8 @@ public class SelectActivity extends Activity implements Callback
     
     private GridView gridView =null;
     private ImageView gridPopWinBtn;
+    
+    private SelectActivity me = this; 
     
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -205,6 +210,15 @@ public class SelectActivity extends Activity implements Callback
         // 设置自定义Adapter
         thicknessAdapter = new ThicknessAdapter(this);
         listView.setAdapter(thicknessAdapter);
+        listView.setOnItemClickListener(new OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                    int position, long id) {
+                Toast.makeText(me, "选择了：position:"+ position, Toast.LENGTH_LONG).show();
+                selectPopupWindow.dismiss();
+            }
+        });
         selectPopupWindow = new PopupWindow(selectPopWindowView, pwidth, LayoutParams.WRAP_CONTENT, true);
         selectPopupWindow.setOutsideTouchable(true);
         /* 这一句是为了实现弹出PopupWindow后，当点击屏幕其他部分及Back键时PopupWindow会消失， */
@@ -219,6 +233,16 @@ public class SelectActivity extends Activity implements Callback
         // 设置自定义Adapter
         gridAdapter = new GridAdapter(this);
         gridView.setAdapter(gridAdapter);
+        
+        gridView.setOnItemClickListener(new OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                    int position, long id) {
+                Toast.makeText(me, "选择了：position:"+ position, Toast.LENGTH_LONG).show();
+                selectPopupWindow.dismiss();
+            }
+        });
         selectPopupWindow = new PopupWindow(selectPopWindowView, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
         selectPopupWindow.setOutsideTouchable(true);
         /* 这一句是为了实现弹出PopupWindow后，当点击屏幕其他部分及Back键时PopupWindow会消失， */
@@ -376,22 +400,8 @@ public class SelectActivity extends Activity implements Callback
              }else{
                 holder3 = (ViewHolder3)convertView.getTag();
              }
-            int thickness = this.thicknessArray[position];
+            final int thickness = this.thicknessArray[position];
             holder3.thicknessBtn.setHeight(thickness);
-            convertView.setOnTouchListener(new OnTouchListener()
-            {
-                @Override
-                public boolean onTouch(View v, MotionEvent event)
-                {
-                    if(event.getAction() == MotionEvent.ACTION_DOWN){
-                        v.setBackgroundColor(ctx.getResources().getColor(R.color.grey));
-                    }else if(event.getAction() == MotionEvent.ACTION_UP){
-                        v.setBackgroundColor(ctx.getResources().getColor(android.R.color.transparent));
-                        selectPopupWindow.dismiss();
-                    }
-                    return false;
-                }
-            });
             return convertView;
         }
         

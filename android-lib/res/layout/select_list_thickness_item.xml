@@ -8,6 +8,8 @@
     android:paddingTop="20dp"
     android:paddingBottom="20dp"
     android:layout_gravity="center"
+    android:background="@drawable/select_item_bg"
+    android:descendantFocusability="blocksDescendants"
     >  
   
      <Button
@@ -15,7 +17,9 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="@color/white"
-        android:text="  "
+        android:focusable="false"
+        android:clickable="false" 
+        android:text=" "
         />
     
   
