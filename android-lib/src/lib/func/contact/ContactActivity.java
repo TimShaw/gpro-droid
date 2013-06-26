@@ -30,7 +30,10 @@ public class ContactActivity extends Activity
         ContactDao.getSIMContacts(this, contactList, contactPhoneSet);*/
         
         
-        ContactDao.printPhoneContacts(this);
-        ContactDao.printContacts(this);
+        //ContactDao.printPhoneContacts(this);
+        //ContactDao.getAllContactsInfo(this);
+        
+        ContactDao.insertPhoneContact(this);
+        
     }
 }
