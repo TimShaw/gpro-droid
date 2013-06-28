@@ -5,6 +5,7 @@ import lib.func.ScreenShot;
 import lib.func.contact.ContactActivity;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
+import lib.func.loadlocale.LoadLocaleActivity;
 import lib.ui.dialog.Tip;
 import lib.ui.layout.TableLayout;
 import lib.ui.list.list1.SelfListViewActivity;
@@ -45,6 +46,18 @@ public class UILibActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        Button loadLocale = (Button)findViewById(R.id.loadLocale);
+        loadLocale.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,LoadLocaleActivity.class);
+                startActivity(intent);
+            }
+        });
+        
         
         Button floatondesktop = (Button)findViewById(R.id.floatondesktop);
         floatondesktop.setOnClickListener(new OnClickListener()

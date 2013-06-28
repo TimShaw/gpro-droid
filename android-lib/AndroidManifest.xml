@@ -132,11 +132,18 @@
 		<activity android:name="lib.func.contact.ContactActivity"></activity>
 		<activity android:name="lib.ui.select.SelectActivity"></activity>
 		<activity android:name="lib.func.floatondesktop.FloatOnDescktopActivity"></activity>
+		<activity android:name="lib.func.loadlocale.LoadLocaleActivity"></activity>
+		
 		
    		<meta-data
 	    android:name="com.google.android.maps.v2.API_KEY"
 	    android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY"/>
         
+   		
+   		<provider 
+   		    android:authorities="lib.func.loadlocale.LocalFileContentProvider" 
+      		android:name="lib.func.loadlocale.LocalFileContentProvider"> 
+		</provider> 
     </application>
 	
    
