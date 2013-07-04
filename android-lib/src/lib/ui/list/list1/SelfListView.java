@@ -2,13 +2,17 @@ package lib.ui.list.list1;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 
-public class SelfListView extends LinearLayout {  
+public class SelfListView extends LinearLayout{  
     
     private BaseAdapter mSelfAdapter;  
+    private String TAG = SelfListView.class.getSimpleName();
       
     public SelfListView(Context context) {  
         super(context);  
@@ -52,6 +56,24 @@ public class SelfListView extends LinearLayout {
     public void setSelfAdapter(BaseAdapter selfAdapter) {  
         this.mSelfAdapter = selfAdapter;  
         buildList();  
-    }  
+    }
+
+    /*@Override
+    public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount)
+    {
+        Log.i(TAG, "onScroll....firstVisibleItem:"+firstVisibleItem+",visibleItemCount:"+visibleItemCount+",totalItemCount:"+totalItemCount);
+        
+        
+        
+    }
+
+    @Override
+    public void onScrollStateChanged(AbsListView view, int scrollState)
+    {
+        Log.i(TAG, "onScrollStateChanged.... scrollState:"+scrollState);
+        
+        
+        
+    }  */
       
 }  

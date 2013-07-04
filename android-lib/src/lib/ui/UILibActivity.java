@@ -1,6 +1,12 @@
 package lib.ui;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+
+import lib.Tool;
 import lib.func.ScreenShot;
 import lib.func.contact.ContactActivity;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
@@ -22,6 +28,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.ValueCallback;
@@ -37,7 +44,7 @@ public class UILibActivity extends Activity {
     private EditText endDateTime;
     private UILibActivity me = this;
     private String initStartDateTime = "2012年9月3日 14:44";
-    
+    private String TAG = UILibActivity.class.getSimpleName();
     
     private ValueCallback<Uri> mUploadMessage;
     private final static int FILECHOOSER_RESULTCODE = 1;
@@ -46,6 +53,51 @@ public class UILibActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        
+        Button copyAsset = (Button)findViewById(R.id.copyAsset);
+        copyAsset.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                ///Tool.copyAssets(me);
+                List<String> fileLists = Tool.listFile(me, "www");
+                
+                String dataPath = Tool.getDataDir(me);
+                for(String filepath:fileLists){
+                    String filename = filepath.substring(filepath.lastIndexOf("/")+1);
+                    Log.i(TAG, "filename:"+filename);
+                    
+                    File file = new File(dataPath);
+                    try
+                    {
+                        InputStream is = me.getResources().getAssets().open(filepath);
+                        byte[] b = new byte[256];
+                        int count=0;
+                        while((count=is.read(b))!=-1){
+                           
+                        }
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+                
+            }
+        });
+        
+        Button pullListViewSelf = (Button)findViewById(R.id.pullListViewSelf);
+        pullListViewSelf.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,SelfListViewActivity.class);
+                startActivity(intent);
+            }
+        });
+        
         
         Button loadLocale = (Button)findViewById(R.id.loadLocale);
         loadLocale.setOnClickListener(new OnClickListener()

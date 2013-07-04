@@ -10,6 +10,19 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
+        
+        <Button
+            android:id="@+id/copyAsset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="copyAsset"
+            />
+        <Button
+            android:id="@+id/pullListViewSelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pullListViewSelf"
+            />
         <Button
             android:id="@+id/loadLocale"
             android:layout_width="wrap_content"

@@ -5,9 +5,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
 <title>Insert title here</title>
+
+<link title="inq.ui" href="content://lib.func.loadlocale.LocalFileContentProvider/www/css/base.css" type="text/css" rel="stylesheet"/>
 <script type="text/javascript" charset="utf-8" src="content://lib.func.loadlocale.LocalFileContentProvider/www/js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="content://lib.func.loadlocale.LocalFileContentProvider/www/js/test.js"></script>
+
 <!--
+<link title="inq.ui" href="css/base.css" type="text/css" rel="stylesheet"/>
+<link title="inq.ui" href="content://lib.func.loadlocale.LocalFileContentProvider/www/css/base.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" charset="utf-8" src="/www/js/test.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+	
+	sdcard/js/jquery.js
 	-->
 </head>
 <body>b这是一个html页面
@@ -15,12 +24,17 @@
 <hr />
 <button onclick="testNotJquery()">testNotJquery</button><br/>
 <button onclick="testWithJquery()" id="testWithJquery">testWithJquery</button><br/>
+<button onclick="testInAssets()" id="testInAssets">testInAssets</button><br/>
+<div class="cuxiao"></div>
  
 asset图片  
-<img src="content://lib.func.loadlocale.LocalFileContentProvider/www/images/mn.jpg" alt="a图片">  
+<img src="content://lib.func.loadlocale.LocalFileContentProvider/www/images/mn.jpg" alt="a图片"/>  
 <br/>
-绝对图片  
-<img src="content://lib.func.loadlocale.LocalFileContentProvider/sdcard/psb.jpg" alt="a图片">  
+<!--
+sdCard图片  
+<img src="content://lib.func.loadlocale.LocalFileContentProvider/sdcard/psb.jpg" alt="a图片"/>
+
+-->
 <br/>
 
 <script>
@@ -32,7 +46,7 @@ asset图片
 	var testWithJquery = function(){
 		alert($("#testWithJquery"));
 	}
-	
+ 
 	
 </script>	
 </body>

@@ -27,6 +27,7 @@ public class LoadLocaleActivity extends Activity
         
         WebView wv = (WebView)findViewById(R.id.webView);
         this.settingWebView(wv, this);
+        wv.setWebViewClient(new LibWebViewClient());
         wv.setWebChromeClient(new LibWebChromeClient());
         wv.loadUrl("http://192.168.92.61:8080/android-lib/assets/www/load_from_remote.html");
     }

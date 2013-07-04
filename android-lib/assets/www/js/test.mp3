@@ -1,0 +1,6 @@
+var testInAssets= function(){
+	alert("testInAssets");
+	if($){
+		alert("jquery is available....");
+	}
+}
