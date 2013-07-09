@@ -12,6 +12,7 @@ import lib.func.contact.ContactActivity;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
+import lib.func.wps.WifiPosition;
 import lib.ui.dialog.Tip;
 import lib.ui.layout.TableLayout;
 import lib.ui.list.list1.SelfListViewActivity;
@@ -53,6 +54,18 @@ public class UILibActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        
+        Button wifiPosition = (Button)findViewById(R.id.wifiPosition);
+        wifiPosition.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,WifiPosition.class);
+                startActivity(intent);
+            }
+        });
         
         
         Button copyAsset = (Button)findViewById(R.id.copyAsset);
