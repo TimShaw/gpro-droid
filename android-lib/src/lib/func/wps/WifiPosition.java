@@ -13,6 +13,7 @@ import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -29,6 +30,8 @@ public class WifiPosition extends Activity
     
     private WifiManager wifiManager;
     private LinearLayout container;
+    private final String TAG = WifiPosition.class.getSimpleName();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +43,29 @@ public class WifiPosition extends Activity
         this.registerReceiver(receiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
         this.registerReceiver(receiver, new IntentFilter(WifiManager.RSSI_CHANGED_ACTION));
         wifiManager = (WifiManager)this.getSystemService(Context.WIFI_SERVICE);
-        wifiManager.startScan();
-        
-        
-        
+        if(!wifiManager.isWifiEnabled()){
+           wifiManager.setWifiEnabled(true);
+        }
+        new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                while(true){
+                   wifiManager.startScan();
+                try
+                {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                }
+            }
+        }).start();
     }
+    
+    
     
     public class MyBroadcastReceiver extends BroadcastReceiver{
         private SimpleDateFormat sdf = new SimpleDateFormat("MM/dd HH:mm:ss");
@@ -55,10 +76,14 @@ public class WifiPosition extends Activity
                 List<ScanResult> results =  wifiManager.getScanResults();
                 if(results!=null){
                     for(ScanResult result: results){
-                        int signalLevel = WifiManager.calculateSignalLevel(result.level, 20);
-                        TextView tv = new TextView(context);
-                        tv.setText("ssid: "+result.SSID+",bssid:"+result.BSSID+",level:"+result.level+",frequency:"+result.frequency+",signalLevel:"+signalLevel);
-                        container.addView(tv, 0);
+                        if(result.SSID.contains("hundsun")){
+                            int signalLevel = WifiManager.calculateSignalLevel(result.level, 20);
+                            TextView tv = new TextView(context);
+                            String str = "ssid: "+result.SSID+",bssid:"+result.BSSID+",level:"+result.level+",frequency:"+result.frequency+",signalLevel:"+signalLevel;
+                            tv.setText(str);
+                            Log.i(TAG, str);
+                            container.addView(tv, 0);
+                        }
                     }
                     
                     TextView tv = new TextView(context);
