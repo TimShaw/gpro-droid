@@ -4,14 +4,15 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    
     <permission
         android:name="lib.ui.permission.MAPS_RECEIVE"
-        android:protectionLevel="signature"/>
-	<uses-permission android:name="lib.ui.permission.MAPS_RECEIVE"/>
-    
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="lib.ui.permission.MAPS_RECEIVE" />
+
     <uses-sdk android:minSdkVersion="10" />
-	<uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -20,148 +21,145 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.RECORD_VIDEO"/>
+    <uses-permission android:name="android.permission.RECORD_VIDEO" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS" />   
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />   
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
-    
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-	
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    
-     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" ></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" ></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" ></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" ></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET" ></uses-permission>
-    <uses-permission android:name="android.permission.WAKE_LOCK" ></uses-permission>
-	
-	<uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
-	
-    <application
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"  
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" >
+    </uses-permission>
 
-        android:configChanges="orientation|keyboardHidden">
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:configChanges="orientation|keyboardHidden"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
         <activity
             android:name=".UILibActivity"
-            android:label="@string/app_name" 
-            
-            >
-            <!-- 
-            android:screenOrientation="portrait"
-             -->
+            android:label="@string/app_name" >
+
+<!--             android:screenOrientation="portrait" -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-         <activity 
-    android:name="lib.ui.layout.TableLayout" 
-
-    >
+        <activity android:name="lib.ui.layout.TableLayout" >
             <intent-filter>
                 <action android:name="lib.ui.layout.TableLayout" />
-				<category android:name="android.intent.category.DEFAULT" />  
-                
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
         </activity>
-        
-          <activity 
-    		android:name="lib.ui.menu.MenuActivity" >
+        <activity android:name="lib.ui.menu.MenuActivity" >
             <intent-filter>
                 <action android:name="lib.ui.menu.MenuActivity" />
-				<category android:name="android.intent.category.DEFAULT" />  
-                
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
         </activity>
-        
-          
-          <activity 
-    		android:name="lib.ui.AnotherActivity" >
+        <activity android:name="lib.ui.AnotherActivity" >
             <intent-filter>
                 <action android:name="lib.ui.AnotherActivity" />
-				<category android:name="android.intent.category.DEFAULT" />  
-                
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-            
         </activity>
-   		
         <activity android:name="lib.ui.list.list1.SelfListViewActivity" />
-   		<activity android:name="lib.ui.GoogleMapActivity" />
-   	
-   		<activity android:name="lib.ui.QQShareActivity" />
-   		<activity android:name="lib.ui.share.ShareSdkActivity" />
-   		<activity
+        <activity android:name="lib.ui.GoogleMapActivity" />
+        <activity android:name="lib.ui.QQShareActivity" />
+        <activity android:name="lib.ui.share.ShareSdkActivity" />
+        <activity
             android:name="lib.ui.share.ShareAllGird"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-		<activity
+        <activity
             android:name="lib.ui.share.SharePage"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-		<activity
+        <activity
             android:name="cn.sharesdk.framework.AuthorizeActivity"
             android:configChanges="keyboardHidden|orientation"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" >
-            <!-- 
+
+            <!--
             	Adapter表示一个继承自cn.sharesdk.framework.AuthorizeAdapter的类，
             	这个类可以监听到页面的生命周期，也可以获取授权页面的各种UI控件。 
-            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
+            	开发者可以通过继承AuthorizeAdapter，重写其方法，并获取各种UI来自定义这个页面的行为。
             -->
-            <meta-data android:name="Adapter" android:value="cn.sharesdk.demo.MyAdapter" />
+            <meta-data
+                android:name="Adapter"
+                android:value="cn.sharesdk.demo.MyAdapter" />
         </activity>
-		
-		<activity android:name="lib.ui.location.LocationActivity"></activity>
-		<activity android:name="lib.ui.location.CellActivity"></activity>
-		<activity android:name="lib.ui.ImageGalleryActivity"></activity>
-		<activity android:name="lib.ui.ImageGridActivity"></activity>
-		<activity android:name="android.wheel.WheelActivity"></activity>
-		<activity android:name="lib.func.handwrite.HandwritingActivity"></activity>
-		<activity android:name="lib.ui.ImageListViewActivity"></activity>
-		<activity android:name="lib.func.contact.ContactActivity"></activity>
-		<activity android:name="lib.ui.select.SelectActivity"></activity>
-		<activity android:name="lib.func.floatondesktop.FloatOnDescktopActivity"></activity>
-		<activity android:name="lib.func.loadlocale.LoadLocaleActivity"></activity>
-		<activity android:name="lib.func.wps.WifiPosition"></activity>
-		
-		
-   		<meta-data
-	    android:name="com.google.android.maps.v2.API_KEY"
-	    android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY"/>
+        <activity android:name="lib.ui.location.LocationActivity" >
+        </activity>
+        <activity android:name="lib.ui.location.CellActivity" >
+        </activity>
+        <activity android:name="lib.ui.ImageGalleryActivity" >
+        </activity>
+        <activity android:name="lib.ui.ImageGridActivity" >
+        </activity>
+        <activity android:name="android.wheel.WheelActivity" >
+        </activity>
+        <activity android:name="lib.func.handwrite.HandwritingActivity" >
+        </activity>
+        <activity android:name="lib.ui.ImageListViewActivity" >
+        </activity>
+        <activity android:name="lib.func.contact.ContactActivity" >
+        </activity>
+        <activity android:name="lib.ui.select.SelectActivity" >
+        </activity>
+        <activity android:name="lib.func.floatondesktop.FloatOnDescktopActivity" >
+        </activity>
+        <activity android:name="lib.func.loadlocale.LoadLocaleActivity" >
+        </activity>
+        <activity android:name="lib.func.wps.WifiPosition" >
+        </activity>
+        <activity android:name="lib.func.jni.JniActivity" >
+        </activity>
         
-   		
-   		<provider 
-   		    android:authorities="lib.func.loadlocale.LocalFileContentProvider" 
-      		android:name="lib.func.loadlocale.LocalFileContentProvider"> 
-		</provider> 
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY" />
+
+        <provider
+            android:name="lib.func.loadlocale.LocalFileContentProvider"
+            android:authorities="lib.func.loadlocale.LocalFileContentProvider" >
+        </provider>
     </application>
-	
-   
-    
+
     <supports-screens
-            android:smallScreens="true"
-            android:normalScreens="true"
-            android:largeScreens="true"
-            android:resizeable="true"
-            android:anyDensity="true" />
-    
-   
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+
 </manifest>

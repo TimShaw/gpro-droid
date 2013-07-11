@@ -10,7 +10,7 @@ package lib.func.jni;
 public class JniTest
 {
     private native int fnwindll(); 
-    private native String getLine(String line);
+    public native String getLine(String line);
     static{
           System.loadLibrary("JniTest");       
     }

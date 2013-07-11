@@ -5,11 +5,18 @@
     android:scrollbars="none" >
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/popMenu"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
+        
+        <Button
+            android:id="@+id/jni"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="jni"
+            />
+        
         <Button
             android:id="@+id/wifiPosition"
             android:layout_width="wrap_content"

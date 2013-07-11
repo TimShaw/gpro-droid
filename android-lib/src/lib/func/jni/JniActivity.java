@@ -1,5 +1,6 @@
 package lib.func.jni;
 
+import lib.ui.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,11 @@ public class JniActivity extends Activity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.jni);
         Log.i(TAG, "");
         JniTest jniTest = new JniTest();
+        String line = jniTest.getLine(" allan kin 你");
+        Log.i(TAG, line);
         
     }
     

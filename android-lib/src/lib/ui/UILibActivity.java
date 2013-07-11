@@ -11,6 +11,7 @@ import lib.func.ScreenShot;
 import lib.func.contact.ContactActivity;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
+import lib.func.jni.JniActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
 import lib.func.wps.WifiPosition;
 import lib.ui.dialog.Tip;
@@ -54,6 +55,17 @@ public class UILibActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        Button jni = (Button)findViewById(R.id.jni);
+        jni.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,JniActivity.class);
+                startActivity(intent);
+            }
+        });
         
         
         Button wifiPosition = (Button)findViewById(R.id.wifiPosition);
