@@ -1,5 +1,7 @@
 package lib.func.jni;
 
+import android.util.Log;
+
 /**
  * @ClassName:  JniTest.java
  * @Description: 
@@ -9,6 +11,7 @@ package lib.func.jni;
  */
 public class JniTest
 {
+    private static String TAG = JniTest.class.getSimpleName();
     private native int fnwindll(); 
     public native String getLine(String line);
     static{
@@ -16,7 +19,7 @@ public class JniTest
     }
     
     public static String staticString(String value){
-        System.out.println(" callstatic  from native callback .... value: "+value);
+        Log.i(TAG," callstatic  from native callback .... value: "+value);
         return value;
     }
     public static int staticInt(){
@@ -46,13 +49,13 @@ public class JniTest
     
     public static native Person testObject(Person value);
     
-    public void callback(int notify_id,int param){
-        System.out.println("JNI callback  from native callback ..... id :"+notify_id+", param: "+param);
+    public void callback(int notify_id,Person person){
+        Log.i(TAG,"JNI callback  from native   ..... id :"+notify_id+", person name: "+person.getName());
     }
     
     public static native  void testException() throws InstantiationException;
     
     public void testObjectFromNative(Person person) throws Exception{
-       System.out.println(" person name : "+person.getName()); 
+        Log.i(TAG," person name : "+person.getName()); 
     }
 }

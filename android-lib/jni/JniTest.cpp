@@ -3,17 +3,68 @@
 #include <stdio.h>
 #include <string.h>
 #include <dlfcn.h>
+#include "sys/syscall.h"
+#include "com_type.h"
 /* Header for class lib_func_jni_JniTest */
+
+
+//---------------------------------------------------
+// Log
+//---------------------------------------------------
+#define JNI_DEBUG
+
+#ifdef JNI_DEBUG
+
+#ifndef LOG_TAG
+#define LOG_TAG "JNI_DEBUG"
+#endif
+
+#include <android/log.h>
+
+#define LOGE(msg) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, msg)
+#define LOGI(msg) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, msg)
+#define lOGD(msg) __android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, msg)
+
+#endif
+
+
 
 #ifndef _Included_lib_func_jni_JniTest
 #define _Included_lib_func_jni_JniTest
 #ifdef __cplusplus
+
+#define OUTPUT
+#define gettid() syscall(__NR_gettid)
+
 extern "C" {
 #endif
 
 
 jstring chartojstr(JNIEnv* env, const char* pat);
 char* jstringTostring(JNIEnv* env, jstring jstr);
+S32 ldcls(jclass* jcls,char* bName,JNIEnv *env);
+jboolean newObj(JNIEnv*env, jclass cls,jobject * jobj);
+//JNIEnv *JNU_GetEnv();
+ 
+typedef struct Person
+{
+	jfieldID name;
+	jfieldID age;
+	jfieldID height;
+}PERSON,*LPJ_PERSON;
+PERSON sctPerson;
+
+
+typedef struct JniTest
+{
+	jmethodID mCallback;
+}JNI_TEST,*LPJ_JNI_TEST;
+JNI_TEST sctJniTest;
+
+jclass clsPerson,clsJniTest;
+JavaVM* jvm; 
+
+
 
 /*
  * Class:  lib_func_jni_JniTest
@@ -32,12 +83,27 @@ JNIEXPORT jint JNICALL Java_lib_func_jni_JniTest_fnwindll
  */
 JNIEXPORT jstring JNICALL Java_lib_func_jni_JniTest_getLine
   (JNIEnv * env, jobject jobj, jstring param){
-  	char line[300];
-  	char* paramPtr = jstringTostring(env,param);
-	sprintf(line,"getLine: %s ",paramPtr);
-	//return chartojstr(env,line);
-	jstring jstr = env->NewStringUTF(line);
-	return jstr;
+		char line[300];
+		char* paramPtr = jstringTostring(env,param);
+		sprintf(line,"getLine: %s ",paramPtr);
+		LOGI(line);
+		//return chartojstr(env,line);
+		jstring jstr = env->NewStringUTF(line);
+		
+		/*
+		jobject objPerson = NULL;
+		newObj(env,clsPerson,&objPerson);
+		if(objPerson!=NULL){
+			env->SetIntField(objPerson, sctPerson.age, 27); 
+			env->SetFloatField(objPerson, sctPerson.height, 172.5); 
+			env->SetObjectField(objPerson, sctPerson.name, chartojstr(env,"ÀîËÄ"));
+			env->CallVoidMethod(jobj,jniTest.mCallback,1000,objPerson);
+		}else{
+			OUTPUT("[JNI:%d]  lampobj is null .... \n",gettid());	
+		}
+		env->DeleteLocalRef(objPerson);
+		*/ 
+		return jstr;
 
   }
 
@@ -160,6 +226,44 @@ JNIEXPORT void JNICALL Java_lib_func_jni_JniTest_testException
   (JNIEnv * env, jclass cls){}
 
 
+ 
+JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *_jvm, void *reserved)
+{
+	JNIEnv *env;
+	jclass cls;
+	jvm = _jvm;	 
+	S32 ret;
+	if (jvm->GetEnv((void**)&env,JNI_VERSION_1_4)) {
+		return JNI_ERR;
+	}
+ 
+	ret = ldcls(&clsPerson,(char*)"lib/func/jni/Person",env);
+	LOGI("clsPerson");
+	LOGI(ret);
+	if(ret<0){
+		return ret;
+	}
+	ret = ldcls(&clsJniTest,(char*)"lib/func/jni/JniTest",env);
+	LOGI("clsJniTest");
+	LOGI(ret);
+	if(ret<0){
+		return ret;
+	}
+	
+	sctPerson.name = env->GetFieldID(clsPerson, "name", "Ljava/lang/String;");
+	sctPerson.age = env->GetFieldID(clsPerson, "age", "I"); 
+  sctPerson.height = env->GetFieldID(clsPerson, "height", "F"); 
+	 
+	
+	sctJniTest.mCallback = env->GetMethodID(clsJniTest,"callback","(ILlib/func/jni/Person;)V");
+	if (sctJniTest.mCallback  == NULL) {
+		return JNI_ERR;
+	}
+ 	 
+	LOGI("....load success..... ");
+	return JNI_VERSION_1_4;
+}
+ 
 
 jstring chartojstr(JNIEnv* env, const char* pat)
 {
@@ -168,7 +272,7 @@ jstring chartojstr(JNIEnv* env, const char* pat)
 	jbyteArray bytes = env->NewByteArray(strlen(pat));
 	env->SetByteArrayRegion(bytes, 0, strlen(pat), (jbyte*)pat);
 	jstring encoding = env->NewStringUTF("utf-8");
-	printf("chartojstr    success..... ");
+	LOGI("chartojstr    success..... ");
 	return (jstring)env->NewObject(strClass, ctorID, bytes, encoding);
 }
 
@@ -191,6 +295,48 @@ char* jstringTostring(JNIEnv* env, jstring jstr)
 	env->ReleaseByteArrayElements(barr, ba, 0);
 	return rtn;
 }
+
+
+S32 ldcls(jclass* pjcls,char * bName,JNIEnv *env){
+	jclass cls = env->FindClass(bName);
+	if (cls == NULL) {
+		return JNI_ERR;
+	}
+	*pjcls = (jclass)env->NewWeakGlobalRef(cls);
+	if (*pjcls == NULL) {
+		return JNI_ERR;
+	}
+	return 0;
+}
+
+jboolean newObj(JNIEnv*env, jclass cls,jobject * jobj){
+	jmethodID cstrut = env->GetMethodID(cls, "<init>", "()V");
+	OUTPUT("[JNI:%d] +++++++++++++++++++++++++++ 1  \n",gettid());	
+	jobject _obj = env->NewObject(cls,cstrut);
+  if(env->ExceptionOccurred()){
+  	OUTPUT("[JNI:%d] ...  newObj fail ....\n",gettid());
+  	return 0;
+  }
+  if(_obj!=NULL){
+  	*jobj = _obj;
+	}
+}
+
+/*
+JNIEnv *JNU_GetEnv()
+{
+	JNIEnv *env = NULL;
+	jint sts = jvm->GetEnv((void**)&env,JNI_VERSION_1_6);
+	if(sts < 0){
+		sts = jvm->AttachCurrentThread((void**)&env,NULL);	
+		if(sts <0){
+			return NULL;	
+		}
+		LOGI("jvm AttachCurrentThread...\n");
+	}
+	return env;
+}
+*/
 #ifdef __cplusplus
 }
 #endif

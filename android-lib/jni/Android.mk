@@ -14,6 +14,7 @@
 #
 LOCAL_PATH := $(call my-dir)
 
+LOCAL_C_INCLUDES := $(LOCAL_PATH)
 include $(CLEAR_VARS)
 ################## compile for c ###########################
 #LOCAL_MODULE    := JniTest
@@ -25,8 +26,8 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := JniTest
 LOCAL_CFLAGS    := -Werror
 LOCAL_SRC_FILES := JniTest.cpp
-LOCAL_LDLIBS    := -llog -lGLESv2
-
+#LOCAL_LDLIBS    := -llog -lGLESv2
+LOCAL_LDLIBS    := -llog
 
 
 include $(BUILD_SHARED_LIBRARY)
