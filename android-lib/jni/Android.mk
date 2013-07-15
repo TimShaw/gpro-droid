@@ -24,10 +24,14 @@ include $(CLEAR_VARS)
 
 ################## compile for c++ ###########################
 LOCAL_MODULE    := JniTest
-LOCAL_CFLAGS    := -Werror
+#LOCAL_CFLAGS    := -Werror
+LOCAL_CPPFLAGS  := -Werror -std=c++11
 LOCAL_SRC_FILES := JniTest.cpp
 #LOCAL_LDLIBS    := -llog -lGLESv2
 LOCAL_LDLIBS    := -llog
+
+#APP_USE_CPP0X := true
+#NDK_TOOLCHAIN_VERSION := 4.7
 
 
 include $(BUILD_SHARED_LIBRARY)

@@ -8,6 +8,7 @@ import java.util.List;
 
 import lib.Tool;
 import lib.func.ScreenShot;
+import lib.func.animation.AnimationActivity;
 import lib.func.contact.ContactActivity;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
@@ -22,6 +23,7 @@ import lib.ui.location.LocationActivity;
 import lib.ui.menu.MenuActivity;
 import lib.ui.select.SelectActivity;
 import lib.ui.share.ShareSdkActivity;
+import lib.ui.view.ViewActivity;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -55,6 +57,29 @@ public class UILibActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        
+        
+        Button animation = (Button)findViewById(R.id.animation);
+        animation.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,AnimationActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button view = (Button)findViewById(R.id.view);
+        view.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,ViewActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button jni = (Button)findViewById(R.id.jni);
         jni.setOnClickListener(new OnClickListener()

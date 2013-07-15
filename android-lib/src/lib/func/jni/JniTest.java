@@ -52,7 +52,9 @@ public class JniTest
     public void callback(int notify_id,Person person){
         Log.i(TAG,"JNI callback  from native   ..... id :"+notify_id+", person name: "+person.getName());
     }
-    
+    public void callbackInt(int notify_id){
+        Log.i(TAG,"JNI callback  from native   ..... id :"+notify_id);
+    }
     public static native  void testException() throws InstantiationException;
     
     public void testObjectFromNative(Person person) throws Exception{

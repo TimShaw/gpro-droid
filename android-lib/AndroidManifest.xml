@@ -143,7 +143,14 @@
         </activity>
         <activity android:name="lib.func.jni.JniActivity" >
         </activity>
-        
+        <activity android:name="lib.ui.view.ViewActivity" >
+        </activity>
+        <activity android:name="lib.ui.view.GameViewActivity" >
+        </activity>
+        <activity android:name="lib.ui.view.TextViewActivity" >
+        </activity>
+        <activity android:name="lib.func.animation.AnimationActivity" >
+        </activity>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
