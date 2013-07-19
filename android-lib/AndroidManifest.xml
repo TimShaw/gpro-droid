@@ -151,7 +151,24 @@
         </activity>
         <activity android:name="lib.func.animation.AnimationActivity" >
         </activity>
-
+		<activity android:name="lib.ui.splash.AnimationSplashActivity" >
+        </activity>
+        <activity android:name="lib.ui.list.ExpandableListViewDemo" >
+        </activity>
+        <activity android:name="lib.ui.tab.TestMyActivityGroup" >
+        </activity>
+        <activity android:name="lib.ui.tab.ContentActivity0" >
+        </activity>
+        <activity android:name="lib.ui.tab.ContentActivity1" >
+        </activity>
+        <activity android:name="lib.ui.tab.ContentActivity2" >
+        </activity>
+        <activity android:name="lib.ui.tab.ContentActivity3" >
+        </activity>
+        <activity android:name="lib.ui.tab.ContentActivity4" >
+        </activity>
+        <activity android:name="lib.ui.drawer.SlidingDrawerDemo" >
+        </activity>
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY" />

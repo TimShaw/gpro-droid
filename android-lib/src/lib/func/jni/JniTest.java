@@ -49,6 +49,8 @@ public class JniTest
     
     public static native Person testObject(Person value);
     
+    public static native int testMax(int a,int b);
+    
     public void callback(int notify_id,Person person){
         Log.i(TAG,"JNI callback  from native   ..... id :"+notify_id+", person name: "+person.getName());
     }

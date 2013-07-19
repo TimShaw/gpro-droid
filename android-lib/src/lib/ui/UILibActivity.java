@@ -16,13 +16,17 @@ import lib.func.jni.JniActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
 import lib.func.wps.WifiPosition;
 import lib.ui.dialog.Tip;
+import lib.ui.drawer.SlidingDrawerDemo;
 import lib.ui.layout.TableLayout;
+import lib.ui.list.ExpandableListViewDemo;
 import lib.ui.list.list1.SelfListViewActivity;
 import lib.ui.location.CellActivity;
 import lib.ui.location.LocationActivity;
 import lib.ui.menu.MenuActivity;
 import lib.ui.select.SelectActivity;
 import lib.ui.share.ShareSdkActivity;
+import lib.ui.splash.AnimationSplashActivity;
+import lib.ui.tab.TestMyActivityGroup;
 import lib.ui.view.ViewActivity;
 import android.app.Activity;
 import android.app.Notification;
@@ -59,6 +63,52 @@ public class UILibActivity extends Activity {
         setContentView(R.layout.main);
         
         
+
+        Button slidingDrawerDemo = (Button)findViewById(R.id.slidingDrawerDemo);
+        slidingDrawerDemo.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,SlidingDrawerDemo.class);
+                startActivity(intent);
+            }
+        });
+        
+        
+        Button testMyActivityGroup = (Button)findViewById(R.id.testMyActivityGroup);
+        testMyActivityGroup.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,TestMyActivityGroup.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button expandableListViewDemo = (Button)findViewById(R.id.expandableListViewDemo);
+        expandableListViewDemo.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,ExpandableListViewDemo.class);
+                startActivity(intent);
+            }
+        });
+        
+        
+        Button animationSplash = (Button)findViewById(R.id.animationSplash);
+        animationSplash.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,AnimationSplashActivity.class);
+                startActivity(intent);
+            }
+        });
         Button animation = (Button)findViewById(R.id.animation);
         animation.setOnClickListener(new OnClickListener()
         {

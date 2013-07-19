@@ -9,6 +9,38 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:orientation="vertical" >
+        
+        
+        
+        <Button
+            android:id="@+id/slidingDrawerDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="slidingDrawerDemo"
+            />
+        
+        <Button
+            android:id="@+id/testMyActivityGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="testMyActivityGroup"
+            />
+        
+        
+        <Button
+            android:id="@+id/expandableListViewDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="expandableListViewDemo"
+            />
+        
+        
+        <Button
+            android:id="@+id/animationSplash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="animationSplash"
+            />
         <Button
             android:id="@+id/animation"
             android:layout_width="wrap_content"

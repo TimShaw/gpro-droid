@@ -43,6 +43,11 @@
 #define OUTPUT
 #define gettid() syscall(__NR_gettid)
 
+
+#ifndef NELEM
+#define NELEM(x) ((int) (sizeof(x) / sizeof((x)[0])))
+#endif
+
 extern "C" {
 #endif
 
@@ -51,6 +56,8 @@ jstring chartojstr(JNIEnv* env, const char* pat);
 char* jstringTostring(JNIEnv* env, jstring jstr);
 S32 ldcls(jclass* jcls,char* bName,JNIEnv *env);
 jboolean newObj(JNIEnv*env, jclass cls,jobject * jobj);
+jstring getLine(JNIEnv * env, jobject jobj, jstring param);
+jint testMax(JNIEnv * env, jclass cls, jint param1,jint param2);
 //JNIEnv *JNU_GetEnv();
  
 typedef struct Person
@@ -69,10 +76,32 @@ typedef struct JniTest
 }JNI_TEST,*LPJ_JNI_TEST;
 JNI_TEST sctJniTest;
 
+
+/*
+ * used in RegisterNatives to describe native method name, signature,
+ * and function pointer.
+ typedef struct{
+    char *name;
+    char *signature;
+    void *fnPtr;
+}JNINativeMethod;
+ 
+ */
+
+
 jclass clsPerson,clsJniTest;
+
+
+
+
+
 //JavaVM* jvm; 
 
-
+static JNINativeMethod s_methods[] = {
+		{"getLine", "(Ljava/lang/String;)Ljava/lang/String;", (void*)getLine},
+		{"testMax", "(II)I", (void*)testMax},
+		
+};
 
 /*
  * Class:  lib_func_jni_JniTest
@@ -88,8 +117,13 @@ JNIEXPORT jint JNICALL Java_lib_func_jni_JniTest_fnwindll
  * Class:  lib_func_jni_JniTest
  * Method: getLine
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
+ 
+	JNIEXPORT jstring JNICALL Java_lib_func_jni_JniTest_getLine
+  (JNIEnv * env, jobject jobj, jstring param)
+  
+  
  */
-JNIEXPORT jstring JNICALL Java_lib_func_jni_JniTest_getLine
+ jstring getLine
   (JNIEnv * env, jobject jobj, jstring param){
 		char line[300];
 		char* paramPtr = jstringTostring(env,param);
@@ -139,7 +173,8 @@ JNIEXPORT jstring JNICALL Java_lib_func_jni_JniTest_getLine
  */
 JNIEXPORT jfloat JNICALL Java_lib_func_jni_JniTest_testFloat
   (JNIEnv * env, jclass cls, jfloat param){
-  	
+  	LOGFI("Java_lib_func_jni_JniTest_testFloat param:%f...",param);
+  	return param;
   }
 
 /*
@@ -250,6 +285,18 @@ JNIEXPORT jobject JNICALL Java_lib_func_jni_JniTest_testObject
 JNIEXPORT void JNICALL Java_lib_func_jni_JniTest_testException
   (JNIEnv * env, jclass cls){}
 
+
+
+jint testMax
+  (JNIEnv * env, jclass cls, jint param1,jint param2){
+  	jint max;
+  	max = param1>=param2?param1:param2;
+  	char str[100];
+  	sprintf(str," testMax: %d,%d  maxVal: %d",param1,param2,max);	
+  	LOGI(str);
+  	return max;
+  }
+
  
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved)
 {
@@ -326,6 +373,14 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *jvm, void *reserved)
 	}
  	 
 	LOGI("....load success..... ");
+	
+	
+	if (env->RegisterNatives(clsJniTest, s_methods, NELEM(s_methods)) < 0)
+	{
+	  return JNI_ERR;
+	}
+	LOGI("....registNatives success..... ");
+	
 	return JNI_VERSION_1_6;
 }
 JNIEXPORT void JNICALL  

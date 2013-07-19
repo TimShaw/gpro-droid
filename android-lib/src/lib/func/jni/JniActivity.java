@@ -25,7 +25,11 @@ public class JniActivity extends Activity
         JniTest jniTest = new JniTest();
         String line = jniTest.getLine(" allan kin 你");
         Log.i(TAG, line);
+        float fRet = JniTest.testFloat(27.027f);
+        Log.i(TAG,String.valueOf(fRet));
         
+        int max = JniTest.testMax(20, 40);
+        Log.i(TAG, "max:"+max);
     }
     
 }

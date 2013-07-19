@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_marginTop="0.0px" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="fill_parent"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0" />
+
+        <RadioGroup
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/radio_button0"
+                style="@style/tab_radio"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@android:drawable/ic_menu_call"
+                android:text="按钮1" />
+
+            <RadioButton
+                android:id="@+id/radio_button1"
+                style="@style/tab_radio"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@android:drawable/ic_menu_camera"
+                android:text="按钮2" />
+
+            <RadioButton
+                android:id="@+id/radio_button2"
+                style="@style/tab_radio"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@android:drawable/ic_menu_agenda"
+                android:text="按钮3" />
+
+            <RadioButton
+                android:id="@+id/radio_button3"
+                style="@style/tab_radio"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@android:drawable/ic_menu_delete"
+                android:text="按钮4" />
+
+            <RadioButton
+                android:id="@+id/radio_button4"
+                style="@style/tab_radio"
+                android:layout_marginTop="2.0dip"
+                android:drawableTop="@android:drawable/ic_menu_help"
+                android:text="按钮5" />
+        </RadioGroup>
+    </LinearLayout>
+
+</LinearLayout>

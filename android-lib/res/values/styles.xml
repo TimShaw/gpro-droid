@@ -4,4 +4,20 @@
 	   <item name="android:windowFullscreen">true</item> 
 	   <item name="android:windowNoTitle">true</item>  
 	</style> 
+	
+	<style name="tab_radio">
+		
+	    <item name="android:textColor">#FFFFFFFF</item>
+	    <item name="android:ellipsize">marquee</item>
+	    <item name="android:gravity">center_horizontal</item>
+<!-- 	
+<item name="android:textSize">@dimen/hl_bottom_tab_font_size</item>
+<item name="android:background">@drawable/hl_bg_home_button</item>
+	    <item name="android:paddingTop">@dimen/hsmaw_bottom_tab_padding_up</item>
+	    <item name="android:drawablePadding">@dimen/hsmaw_bottom_tab_padding_drawable</item> -->
+	    <item name="android:layout_width">wrap_content</item>
+	    <item name="android:layout_height">wrap_content</item>
+	    <item name="android:button">@null</item>
+	    <item name="android:singleLine">true</item>
+	</style>
 </resources>
