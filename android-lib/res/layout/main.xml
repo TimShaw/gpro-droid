@@ -11,7 +11,12 @@
         android:orientation="vertical" >
         
         
-        
+        <Button
+            android:id="@+id/viewFlipper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="viewFlipper"
+            />
         <Button
             android:id="@+id/slidingDrawerDemo"
             android:layout_width="wrap_content"

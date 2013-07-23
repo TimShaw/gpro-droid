@@ -25,6 +25,7 @@ import lib.ui.location.LocationActivity;
 import lib.ui.menu.MenuActivity;
 import lib.ui.select.SelectActivity;
 import lib.ui.share.ShareSdkActivity;
+import lib.ui.slide.ViewFlipperActivity;
 import lib.ui.splash.AnimationSplashActivity;
 import lib.ui.tab.TestMyActivityGroup;
 import lib.ui.view.ViewActivity;
@@ -62,6 +63,17 @@ public class UILibActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        
+        Button viewFlipper = (Button)findViewById(R.id.viewFlipper);
+        viewFlipper.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,ViewFlipperActivity.class);
+                startActivity(intent);
+            }
+        });
         
 
         Button slidingDrawerDemo = (Button)findViewById(R.id.slidingDrawerDemo);

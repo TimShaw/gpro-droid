@@ -169,6 +169,10 @@
         </activity>
         <activity android:name="lib.ui.drawer.SlidingDrawerDemo" >
         </activity>
+        <activity android:name="lib.ui.slide.ViewFlipperActivity" >
+        </activity>
+        
+        
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY" />

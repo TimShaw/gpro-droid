@@ -144,8 +144,8 @@ public class ImageGalleryActivity extends Activity
             imageView.setImageBitmap(Bitmaps[position]);  
       
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);  
-            imageView.setLayoutParams(new Gallery.LayoutParams(100,  
-                    LayoutParams.FILL_PARENT));  
+            imageView.setLayoutParams(new Gallery.LayoutParams(LayoutParams.WRAP_CONTENT,  
+                    LayoutParams.WRAP_CONTENT));  
             imageView.setPadding(0, 0, 0, 0);  
             // imageView.setBackgroundResource(mGalleryItemBackground);  
             return imageView;  
