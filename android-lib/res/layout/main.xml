@@ -12,6 +12,20 @@
         
         
         <Button
+            android:id="@+id/touchEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="touchEvent"
+            />
+        <Button
+            android:id="@+id/readGlass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="readGlass"
+            />
+        
+        
+        <Button
             android:id="@+id/viewFlipper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -73,6 +87,13 @@
             android:layout_height="wrap_content"
             android:text="wifiPosition"
             />
+        <Button
+            android:id="@+id/wifiPositionDemo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="wifiPositionDemo"
+            />
+        
         <Button
             android:id="@+id/copyAsset"
             android:layout_width="wrap_content"

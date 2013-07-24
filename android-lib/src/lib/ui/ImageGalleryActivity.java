@@ -133,10 +133,6 @@ public class ImageGalleryActivity extends Activity
             return position;  
         }  
       
-        public float getScale(boolean focused, int offset) {  
-            return Math.max(0, 1.0f / (float) Math.pow(2, Math.abs(offset)));  
-        }  
-      
         @Override  
         public View getView(int position, View convertView, ViewGroup parent) {  
             Log.d("lg", "getView");  
@@ -167,7 +163,7 @@ public class ImageGalleryActivity extends Activity
                         Bitmap bm = BitmapFactory.decodeStream(is);  
                         Bitmaps[i] = bm;  
                         cwjHandler.post(mUpdateResults); // 发布消息让主线程接收,实现异步线程和主线程的通信  
-                        // notifyDataSetChanged(); //不能直接调用ui操作,这样不是线程安全的  
+                        //notifyDataSetChanged(); //不能直接调用ui操作,这样不是线程安全的  
                         is.close();  
                         Thread.sleep(1000); // 模拟延时  
                     } catch (Exception e) {  

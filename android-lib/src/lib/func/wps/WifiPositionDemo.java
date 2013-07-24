@@ -1,8 +1,12 @@
 package lib.func.wps;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import lib.ui.R;
 import android.app.Activity;
@@ -13,7 +17,6 @@ import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,13 +27,16 @@ import android.widget.TextView;
  * @Date 2013-7-9 下午3:09:39
  * @Copyright: 版权由 HundSun 拥有
  */
-public class WifiPosition extends Activity
+public class WifiPositionDemo extends Activity
 {
 
     private WifiManager  wifiManager;
     private LinearLayout container;
-    private final String TAG = WifiPosition.class.getSimpleName();
+    private final String TAG = WifiPositionDemo.class.getSimpleName();
 
+    
+    private Map<String,Integer> apMap = new HashMap<String,Integer>();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,9 +53,7 @@ public class WifiPosition extends Activity
         {
             wifiManager.setWifiEnabled(true);
         }
-        wifiManager.startScan();
         
-        /*
         new Thread(new Runnable()
         {
 
@@ -69,7 +73,7 @@ public class WifiPosition extends Activity
                     }
                 }
             }
-        }).start();*/
+        }).start(); 
     }
 
     public class MyBroadcastReceiver extends BroadcastReceiver
@@ -88,19 +92,39 @@ public class WifiPosition extends Activity
                     for (ScanResult result : results)
                     {
                         // if(result.SSID.contains("hundsun")){
-                        int signalLevel = WifiManager.calculateSignalLevel(result.level, 20);
+                        Integer level = apMap.get(result.SSID);
+                        /*if(level!=null){
+                           if(level.intValue() == result.level){
+                               
+                           }
+                        }*/
+                        apMap.put(result.SSID, result.level);
+                        
+                        /*int signalLevel = WifiManager.calculateSignalLevel(result.level, 20);
                         TextView tv = new TextView(context);
                         String str = "ssid: " + result.SSID + ",bssid:" + result.BSSID + ",level:" + result.level
                                      + ",frequency:" + result.frequency + ",signalLevel:" + signalLevel;
                         tv.setText(str);
-                        Log.i(TAG, str);
-                        container.addView(tv, 0);
+                        Log.i(TAG, str);*/
+                        //container.addView(tv, 0);
                         // }
                     }
-
-                    TextView tv = new TextView(context);
+                    container.removeAllViews();
+                    Set<Entry<String, Integer>> es = apMap.entrySet();
+                    Iterator<Entry<String, Integer>> it = es.iterator();
+                    while(it.hasNext()){
+                        Entry<String, Integer> entry = it.next();
+                        String ssid = entry.getKey();
+                        Integer level = entry.getValue();
+                        String str="ssid: "+ssid+"  level:"+level;
+                        TextView tv = new TextView(context);
+                        tv.setText(str);
+                        container.addView(tv,0);
+                    }
+                    
+                    /*TextView tv = new TextView(context);
                     tv.setText(sdf.format(new Date(System.currentTimeMillis())) + "------------");
-                    container.addView(tv, 0);
+                    container.addView(tv, 0);*/
                 }
             }
         }

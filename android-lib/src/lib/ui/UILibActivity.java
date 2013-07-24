@@ -10,11 +10,14 @@ import lib.Tool;
 import lib.func.ScreenShot;
 import lib.func.animation.AnimationActivity;
 import lib.func.contact.ContactActivity;
+import lib.func.event.TestTouchEventApp;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
 import lib.func.jni.JniActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
+import lib.func.readglass.ReadGlassActivity;
 import lib.func.wps.WifiPosition;
+import lib.func.wps.WifiPositionDemo;
 import lib.ui.dialog.Tip;
 import lib.ui.drawer.SlidingDrawerDemo;
 import lib.ui.layout.TableLayout;
@@ -64,6 +67,28 @@ public class UILibActivity extends Activity {
         setContentView(R.layout.main);
         
         
+         
+        Button touchEvent = (Button)findViewById(R.id.touchEvent);
+        touchEvent.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,TestTouchEventApp.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button readGlass = (Button)findViewById(R.id.readGlass);
+        readGlass.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,ReadGlassActivity.class);
+                startActivity(intent);
+            }
+        });
         Button viewFlipper = (Button)findViewById(R.id.viewFlipper);
         viewFlipper.setOnClickListener(new OnClickListener()
         {
@@ -162,6 +187,16 @@ public class UILibActivity extends Activity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(me,WifiPosition.class);
+                startActivity(intent);
+            }
+        });
+        Button wifiPositionDemo = (Button)findViewById(R.id.wifiPositionDemo);
+        wifiPositionDemo.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,WifiPositionDemo.class);
                 startActivity(intent);
             }
         });

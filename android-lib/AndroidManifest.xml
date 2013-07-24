@@ -141,6 +141,9 @@
         </activity>
         <activity android:name="lib.func.wps.WifiPosition" >
         </activity>
+        <activity android:name="lib.func.wps.WifiPositionDemo" >
+        </activity>
+        
         <activity android:name="lib.func.jni.JniActivity" >
         </activity>
         <activity android:name="lib.ui.view.ViewActivity" >
@@ -171,7 +174,11 @@
         </activity>
         <activity android:name="lib.ui.slide.ViewFlipperActivity" >
         </activity>
-        
+        <activity android:name="lib.func.readglass.ReadGlassActivity" >
+        </activity>
+        <activity android:name="lib.func.event.TestTouchEventApp" >
+        </activity>
+         
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
