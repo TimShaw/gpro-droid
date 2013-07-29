@@ -178,7 +178,13 @@
         </activity>
         <activity android:name="lib.func.event.TestTouchEventApp" >
         </activity>
-         
+        <activity android:name="lib.ui.view.FixedGridActivity" >
+        </activity>
+        <activity android:name="lib.ui.view.MyPhoneCardActivity" >
+        </activity>
+        
+        <activity android:name="lib.ui.view.AutoLineLayoutActivity" >
+        </activity>
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"

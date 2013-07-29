@@ -6,7 +6,7 @@
     android:background="@drawable/guide1"
     >
     
-    <lib.func.readglass.ShaderView 
+    <lib.func.readglass.ReadGlassView 
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         />

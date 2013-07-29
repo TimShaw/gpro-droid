@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<lib.ui.view.MyPhoneCard
+  xmlns:android="http://schemas.android.com/apk/res/android" 
+  android:id = "@+id/dialpad" 
+  android:paddingLeft="7dp" 
+  android:paddingRight="7dp" 
+  android:paddingTop="6dp" 
+  android:paddingBottom="6dp" 
+  android:layout_gravity="center" 
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content" 
+  android:layout_marginBottom="5dp">
+  
+  	<ImageButton android:id="@+id/one" 
+  		android:src="@drawable/keyboard_1" 
+  		style="@style/dial_btn_style" 
+  		/>
+  		
+  	<ImageButton android:id="@+id/two" 
+  		android:src="@drawable/keyboard_2" 
+  		style="@style/dial_btn_style"/>  
+  		
+  	<ImageButton android:id="@+id/three" 
+  		android:src="@drawable/keyboard_3" 
+  		style="@style/dial_btn_style"/>  
+  		
+  	<ImageButton android:id="@+id/four" 
+  		android:src="@drawable/keyboard_4" 
+  		style="@style/dial_btn_style"/>  
+  		
+  	<ImageButton android:id="@+id/five" 
+  		android:src="@drawable/keyboard_5" 
+  		style="@style/dial_btn_style"/>
+  		
+  	<ImageButton android:id="@+id/six" 
+  		android:src="@drawable/keyboard_6" 
+  		style="@style/dial_btn_style"/> 
+  		
+  	<ImageButton android:id="@+id/seven" 
+  		android:src="@drawable/keyboard_7" 
+  		style="@style/dial_btn_style"/>
+  		
+  	<ImageButton android:id="@+id/eight" 
+  		android:src="@drawable/keyboard_8" 
+  		style="@style/dial_btn_style"/>
+  		
+  	<ImageButton android:id="@+id/nine" 
+  		android:src="@drawable/keyboard_9" 
+  		style="@style/dial_btn_style"/>  
+  		
+  	<ImageButton android:id="@+id/star" 
+  		android:src="@drawable/keyboard_star" 
+  		style="@style/dial_btn_style"/>   
+  		
+  	<ImageButton android:id="@+id/zero" 
+  		android:src="@drawable/keyboard_0" 
+  		style="@style/dial_btn_style"/>   
+  		
+  	<ImageButton android:id="@+id/pound" 
+  		android:src="@drawable/keyboard_hash" 
+  		style="@style/dial_btn_style"/>     		  		  		   		     		     		    		   		 		  				
+    
+</lib.ui.view.MyPhoneCard>

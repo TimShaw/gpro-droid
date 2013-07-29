@@ -10,6 +10,8 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
         
+        
+        
         <Button
             android:id="@+id/gameView"
             android:layout_width="wrap_content"
@@ -23,7 +25,24 @@
             android:layout_height="wrap_content"
             android:text="textView"
             />
-         
+        <Button
+            android:id="@+id/fixedLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fixedLayout"
+            />
+         <Button
+            android:id="@+id/phoneDial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="phoneDial"
+            />
+        <Button
+            android:id="@+id/autoLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="autoLine"
+            />
     </LinearLayout>
 
 </ScrollView>

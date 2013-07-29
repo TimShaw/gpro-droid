@@ -2,6 +2,7 @@ package lib.func.wps;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -19,14 +20,6 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-/**
- * @ClassName: WifiPosition.java
- * @Description:
- * @Author JinChao
- * @Date 2013-7-9 下午3:09:39
- * @Copyright: 版权由 HundSun 拥有
- */
 public class WifiPositionDemo extends Activity
 {
 
@@ -35,7 +28,9 @@ public class WifiPositionDemo extends Activity
     private final String TAG = WifiPositionDemo.class.getSimpleName();
 
     
-    private Map<String,Integer> apMap = new HashMap<String,Integer>();
+    private Map<String,ScanResult> apMap = new HashMap<String,ScanResult>();
+    
+    private Set<String> apSet = new HashSet<String>();
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -66,7 +61,7 @@ public class WifiPositionDemo extends Activity
                     
                     try
                     {
-                        Thread.sleep(3000);
+                        Thread.sleep(100);
                     } catch (InterruptedException e)
                     {
                         e.printStackTrace();
@@ -87,19 +82,24 @@ public class WifiPositionDemo extends Activity
             if (intent.getAction().equals(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION))
             {
                 List<ScanResult> results = wifiManager.getScanResults();
+                
+                for(String ssid:apSet){
+                   apMap.put(ssid, null);
+                }
+                
+                
                 if (results != null)
                 {
                     for (ScanResult result : results)
                     {
                         // if(result.SSID.contains("hundsun")){
-                        Integer level = apMap.get(result.SSID);
                         /*if(level!=null){
                            if(level.intValue() == result.level){
                                
                            }
                         }*/
-                        apMap.put(result.SSID, result.level);
-                        
+                        apMap.put(result.SSID, result);
+                        apSet.add(result.SSID);
                         /*int signalLevel = WifiManager.calculateSignalLevel(result.level, 20);
                         TextView tv = new TextView(context);
                         String str = "ssid: " + result.SSID + ",bssid:" + result.BSSID + ",level:" + result.level
@@ -109,22 +109,28 @@ public class WifiPositionDemo extends Activity
                         //container.addView(tv, 0);
                         // }
                     }
-                    container.removeAllViews();
-                    Set<Entry<String, Integer>> es = apMap.entrySet();
-                    Iterator<Entry<String, Integer>> it = es.iterator();
-                    while(it.hasNext()){
-                        Entry<String, Integer> entry = it.next();
-                        String ssid = entry.getKey();
-                        Integer level = entry.getValue();
-                        String str="ssid: "+ssid+"  level:"+level;
-                        TextView tv = new TextView(context);
-                        tv.setText(str);
-                        container.addView(tv,0);
-                    }
+                    
                     
                     /*TextView tv = new TextView(context);
                     tv.setText(sdf.format(new Date(System.currentTimeMillis())) + "------------");
                     container.addView(tv, 0);*/
+                }
+                
+                container.removeAllViews();
+                Set<Entry<String, ScanResult>> es = apMap.entrySet();
+                Iterator<Entry<String, ScanResult>> it = es.iterator();
+                while(it.hasNext()){
+                    Entry<String, ScanResult> entry = it.next();
+                    String ssid = entry.getKey();
+                    ScanResult result = entry.getValue();
+                    int level = 0;
+                    if(result!=null){
+                        level = result.level;
+                    }
+                    String str="ssid: "+ssid+"  level:"+level;
+                    TextView tv = new TextView(context);
+                    tv.setText(str);
+                    container.addView(tv,0);
                 }
             }
         }

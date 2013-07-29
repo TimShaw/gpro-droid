@@ -18,7 +18,7 @@ import android.view.View;
  * 放大镜实现方式1
  *
  */
-public class ShaderView extends View{
+public class ReadGlassView extends View{
 	private Bitmap bitmap;
 	private ShapeDrawable drawable;
 	//放大镜的半径
@@ -27,7 +27,7 @@ public class ShaderView extends View{
 	private static final int FACTOR = 3;
 	private Matrix matrix = new Matrix();
 
-	public ShaderView(Context context,AttributeSet attr){
+	public ReadGlassView(Context context,AttributeSet attr){
 	    super(context, attr);
 	    Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.guide1);
         bitmap = bmp;       
@@ -40,7 +40,7 @@ public class ShaderView extends View{
         drawable.setBounds(0, 0, RADIUS*2, RADIUS*2);
 	}
 	
-	public ShaderView(Context context) {
+	public ReadGlassView(Context context) {
 		super(context);
 		
 	}	

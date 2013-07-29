@@ -37,7 +37,41 @@ public class ViewActivity extends Activity {
                 startActivity(intent);
             }
         });
-		
+        
+        Button fixedLayout = (Button)findViewById(R.id.fixedLayout);
+        fixedLayout.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,FixedGridActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button phoneDial = (Button)findViewById(R.id.phoneDial);
+        phoneDial.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,MyPhoneCardActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        
+        Button autoLine = (Button)findViewById(R.id.autoLine);
+        autoLine.setOnClickListener(new OnClickListener()
+        {
+            
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,AutoLineLayoutActivity.class);
+                startActivity(intent);
+            }
+        });
+        
 	}
 
 }
