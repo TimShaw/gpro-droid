@@ -52,6 +52,8 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap>
     {
         url = params[0];
         String filename = convertUrlToFileName(url);
+        
+        /* 先从 文件系统中 加载图片 */
         File file = new File(fileCachePath + "/" + filename);
         if (file.exists())
         {
@@ -62,6 +64,7 @@ public class ImageDownloaderTask extends AsyncTask<String, Void, Bitmap>
                 return bitmap;
         }
 
+        /* 若本地文件中不存在，则从网络中加载  */
         final DefaultHttpClient client = new DefaultHttpClient();
 
         final HttpGet getRequest = new HttpGet(url);
