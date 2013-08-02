@@ -9,13 +9,18 @@ import java.util.List;
 import lib.Tool;
 import lib.func.ScreenShot;
 import lib.func.animation.AnimationActivity;
+import lib.func.cache.image2.AsyncListImageActivity;
 import lib.func.contact.ContactActivity;
 import lib.func.event.TestTouchEventApp;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
 import lib.func.jni.JniActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
+import lib.func.looper.MessageQueue_TestActivity;
+import lib.func.net.ProxyConnectActivity;
 import lib.func.readglass.ReadGlassActivity;
+import lib.func.screensaver.ScreenSaverBroadcast;
+import lib.func.system_service.SystemServiceActivity;
 import lib.func.wps.WifiPosition;
 import lib.func.wps.WifiPositionDemo;
 import lib.ui.dialog.Tip;
@@ -38,6 +43,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,7 +72,54 @@ public class UILibActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        Intent i = new Intent("lib.func.screensaver.ScreenSaverService");
+        startService(i);
         
+        
+        Button cacheImage2 = (Button)findViewById(R.id.cacheImage2);
+        cacheImage2.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,AsyncListImageActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button systemService = (Button)findViewById(R.id.systemService);
+        systemService.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,SystemServiceActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        
+        Button proxyConnect = (Button)findViewById(R.id.proxyConnect);
+        proxyConnect.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,ProxyConnectActivity.class);
+                startActivity(intent);
+            }
+        });
+        
+        Button looper = (Button)findViewById(R.id.looper);
+        looper.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,MessageQueue_TestActivity.class);
+                startActivity(intent);
+            }
+        });
          
         Button touchEvent = (Button)findViewById(R.id.touchEvent);
         touchEvent.setOnClickListener(new OnClickListener()

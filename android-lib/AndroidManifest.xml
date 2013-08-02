@@ -2,7 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="lib.ui"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    
+    >
+<!-- 
+android:sharedUserId="android.uid.system" 会报错：Installation error: INSTALL_FAILED_SHARED_USER_INCOMPATIBLE
+
+android:sharedUserId="android.uid.system" 表示共享android system 用户进程的操作权限.
+允许程序发送系统级广播。如：this.sendBroadcast(new Intent(Intent.ACTION_SCREEN_OFF));
+
+ -->
+
 
     <permission
         android:name="lib.ui.permission.MAPS_RECEIVE"
@@ -46,6 +56,8 @@
     </uses-permission>
     <uses-permission android:name="android.permission.WAKE_LOCK" >
     </uses-permission>
+    
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -186,6 +198,21 @@
         <activity android:name="lib.ui.view.AutoLineLayoutActivity" >
         </activity>
         
+        <activity android:name="lib.func.looper.MessageQueue_TestActivity" >
+        </activity>
+        
+        <activity android:name="lib.func.net.ProxyConnectActivity" >
+        </activity>
+        
+        <activity android:name="lib.func.system_service.SystemServiceActivity" >
+        </activity>
+        <activity android:name="lib.func.screensaver.ScreenSaverActivity" >
+        </activity>
+        
+        <activity android:name="lib.func.cache.image2.AsyncListImageActivity" >
+        </activity>
+        
+        
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY" />
@@ -194,6 +221,22 @@
             android:name="lib.func.loadlocale.LocalFileContentProvider"
             android:authorities="lib.func.loadlocale.LocalFileContentProvider" >
         </provider>
+        
+        <receiver android:name="lib.func.system_service.OnetimeAlarmReceiver"></receiver>
+        
+        <!-- <receiver android:name="lib.func.screensaver.ScreenSaverBroadcast">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_OFF"></action>
+            </intent-filter>
+        </receiver> -->
+        
+        
+        <service android:name="lib.func.screensaver.ScreenSaverService">
+            <intent-filter>
+		      <action android:name="lib.func.screensaver.ScreenSaverService"/>
+		      <category android:name="android.intent.category.DEFAULT" />   
+		   </intent-filter> 
+        </service>
     </application>
 
     <supports-screens

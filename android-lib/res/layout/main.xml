@@ -10,7 +10,32 @@
         android:layout_height="fill_parent"
         android:orientation="vertical" >
         
+        <Button
+            android:id="@+id/cacheImage2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cacheImage2"
+            />
+        <Button
+            android:id="@+id/systemService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="systemService"
+            />
         
+        <Button
+            android:id="@+id/proxyConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="proxyConnect"
+            />
+        
+        <Button
+            android:id="@+id/looper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="looper"
+            />
         <Button
             android:id="@+id/touchEvent"
             android:layout_width="wrap_content"
