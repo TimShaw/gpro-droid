@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import lib.Tool;
+import lib.app.filemanager.FileManagerActivity;
 import lib.func.ScreenShot;
 import lib.func.animation.AnimationActivity;
 import lib.func.cache.image2.AsyncListImageActivity;
@@ -19,7 +20,6 @@ import lib.func.loadlocale.LoadLocaleActivity;
 import lib.func.looper.MessageQueue_TestActivity;
 import lib.func.net.ProxyConnectActivity;
 import lib.func.readglass.ReadGlassActivity;
-import lib.func.screensaver.ScreenSaverBroadcast;
 import lib.func.system_service.SystemServiceActivity;
 import lib.func.wps.WifiPosition;
 import lib.func.wps.WifiPositionDemo;
@@ -43,7 +43,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -75,6 +74,17 @@ public class UILibActivity extends Activity {
         Intent i = new Intent("lib.func.screensaver.ScreenSaverService");
         startService(i);
         
+        
+        Button app_filemanager = (Button)findViewById(R.id.app_filemanager);
+        app_filemanager.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,FileManagerActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button cacheImage2 = (Button)findViewById(R.id.cacheImage2);
         cacheImage2.setOnClickListener(new OnClickListener()

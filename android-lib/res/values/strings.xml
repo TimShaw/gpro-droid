@@ -37,4 +37,10 @@
     <string name="sm_item_visit_website">关注官方网站</string>
     <string name="sm_item_about">Demo版本 Ver. %s</string>
     <string name="plz_choose_wechat">请选择微信客户端完成操作</string>
+    
+    
+    
+    
+    <string name="up_one_level">..(返回上一级目录)</string>
+    <string name="current_dir">.(刷新)</string>
 </resources>

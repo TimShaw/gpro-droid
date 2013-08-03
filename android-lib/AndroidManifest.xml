@@ -212,6 +212,9 @@ android:sharedUserId="android.uid.system" 表示共享android system 用户进�
         <activity android:name="lib.func.cache.image2.AsyncListImageActivity" >
         </activity>
         
+        <activity android:name="lib.app.filemanager.FileManagerActivity" >
+        </activity>
+        
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
