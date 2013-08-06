@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
+	android:minWidth  和 android:minHeight 计算公式: (网格数 * 74 -2). 
+-->
+ 
+<appwidget-provider
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:initialLayout="@layout/widget_layout"
+  android:minWidth="146dip" android:minHeight="146dip" android:updatePeriodMillis="3600000">
+</appwidget-provider>

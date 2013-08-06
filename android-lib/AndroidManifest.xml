@@ -214,7 +214,8 @@ android:sharedUserId="android.uid.system" 表示共享android system 用户进�
         
         <activity android:name="lib.app.filemanager.FileManagerActivity" >
         </activity>
-        
+        <activity android:name="lib.app.music_player.MusicPlayerActivity" >
+        </activity>
         
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -240,6 +241,20 @@ android:sharedUserId="android.uid.system" 表示共享android system 用户进�
 		      <category android:name="android.intent.category.DEFAULT" />   
 		   </intent-filter> 
         </service>
+        
+        
+        <receiver android:label="@string/widget_name" android:name="lib.widget.TodayDate">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"></action>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget"></meta-data>
+        </receiver>
+        <receiver android:label="@string/widget_small_name" android:name="lib.widget.TodayDateSmall">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"></action>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_small"></meta-data>
+        </receiver>
     </application>
 
     <supports-screens

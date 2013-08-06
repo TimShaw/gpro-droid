@@ -8,6 +8,7 @@ import java.util.List;
 
 import lib.Tool;
 import lib.app.filemanager.FileManagerActivity;
+import lib.app.music_player.MusicPlayerActivity;
 import lib.func.ScreenShot;
 import lib.func.animation.AnimationActivity;
 import lib.func.cache.image2.AsyncListImageActivity;
@@ -74,6 +75,16 @@ public class UILibActivity extends Activity {
         Intent i = new Intent("lib.func.screensaver.ScreenSaverService");
         startService(i);
         
+        Button app_musicplayer = (Button)findViewById(R.id.app_musicplayer);
+        app_musicplayer.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,MusicPlayerActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button app_filemanager = (Button)findViewById(R.id.app_filemanager);
         app_filemanager.setOnClickListener(new OnClickListener()
