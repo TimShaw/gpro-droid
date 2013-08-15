@@ -1,6 +1,11 @@
 package lib.func.wps;
 
-import java.text.SimpleDateFormat;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +22,7 @@ import android.content.IntentFilter;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public class CopyOfWifiPositionDemo extends Activity
@@ -25,7 +31,7 @@ public class CopyOfWifiPositionDemo extends Activity
     private WifiManager  wfm;
     private LinearLayout c;
     private final String TAG = CopyOfWifiPositionDemo.class.getSimpleName();
-
+    private String posId;
     
     private Map<String,Integer> am = new HashMap<String,Integer>();
     
@@ -81,23 +87,60 @@ public class CopyOfWifiPositionDemo extends Activity
                 List<ScanResult> results = wfm.getScanResults();
                 if (results != null)
                 {
-                    for (ScanResult result : results)
+                    URL url;
+                    try
                     {
-                        Integer level = am.get(result.SSID);
-                        am.put(result.SSID, result.level);
+                        url = new URL("http://127.0.0.1/collect.php");
+                        url.getFile();
+                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                        conn.setDoInput(false);
+                        conn.setDoOutput(true);
+                        conn.setUseCaches(false);
+                        conn.setRequestMethod("POST");
+                        conn.connect();
+                        DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+                         
+                        int i=0;
+                        for (ScanResult result : results)
+                        {
+                            am.put(result.SSID, result.level);
+                            String value = posId+"|"+result.BSSID+"|"+result.level;
+                            Log.i(TAG, "pos"+i+":"+value);
+                            conn.addRequestProperty("pos"+i, value);
+                            conn.connect();
+                            
+                            String postContent = URLEncoder.encode("pos"+i, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8");
+                            dos.write(postContent.getBytes());
+                            dos.flush();
+                            i++;
+                        }
+                        dos.close();
+                        
+                        c.removeAllViews();
+                        Set<Entry<String, Integer>> es = am.entrySet();
+                        Iterator<Entry<String, Integer>> it = es.iterator();
+                        while(it.hasNext()){
+                            Entry<String, Integer> entry = it.next();
+                            String ssid = entry.getKey();
+                            Integer level = entry.getValue();
+                            String str="ssid: "+ssid+"  level:"+level;
+                            TextView tv = new TextView(context);
+                            tv.setText(str);
+                            c.addView(tv,0);
+                        }
+                        
+                        
+                        
+                    } catch (MalformedURLException e)
+                    {
+                        e.printStackTrace();
+                    } catch (IOException e)
+                    {
+                        e.printStackTrace();
                     }
-                    c.removeAllViews();
-                    Set<Entry<String, Integer>> es = am.entrySet();
-                    Iterator<Entry<String, Integer>> it = es.iterator();
-                    while(it.hasNext()){
-                        Entry<String, Integer> entry = it.next();
-                        String ssid = entry.getKey();
-                        Integer level = entry.getValue();
-                        String str="ssid: "+ssid+"  level:"+level;
-                        TextView tv = new TextView(context);
-                        tv.setText(str);
-                        c.addView(tv,0);
-                    }
+                    
+
+                    
                 }
             }
         }
