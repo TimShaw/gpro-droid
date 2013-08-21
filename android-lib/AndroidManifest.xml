@@ -217,6 +217,13 @@ android:sharedUserId="android.uid.system" 表示共享android system 用户进�
         <activity android:name="lib.app.music_player.MusicPlayerActivity" >
         </activity>
         
+        <activity android:name="lib.ui.view.KLineActivity" >
+        </activity>
+        
+        <activity android:name="lib.func.https.HttpsActivity" >
+        </activity>
+        
+        
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB6tv1-hOzCBBG5iEM_a_6X3C39MRer9YY" />

@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
@@ -14,9 +15,11 @@ import org.apache.http.conn.ssl.SSLSocketFactory;
 import org.apache.http.conn.ssl.X509HostnameVerifier;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.SingleClientConnManager;
+import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 
 /**
@@ -27,7 +30,7 @@ import android.os.Bundle;
  * @Copyright: 版权由 HundSun 拥有
  */
 public class HttpsActivity extends Activity{
-
+	private String TAG = HttpsActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,11 +51,14 @@ public class HttpsActivity extends Activity{
         HttpsURLConnection.setDefaultHostnameVerifier(hostnameVerifier);
 
         // Example send http request
-        final String url = "https://encrypted.google.com/";
+        final String url = "https://192.168.2.101:8443/android-lib/jsp/login.jsp";
         HttpPost httpPost = new HttpPost(url);
         try
         {
             HttpResponse response = httpClient.execute(httpPost);
+            HttpEntity entity = response.getEntity();
+            String content  = EntityUtils.toString(entity);
+            Log.i(TAG, "https content : "+content);
         } catch (ClientProtocolException e)
         {
             e.printStackTrace();

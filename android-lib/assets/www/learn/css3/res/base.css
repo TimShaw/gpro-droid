@@ -1,0 +1,98 @@
+﻿/**********************************************************
+	rewrite css of elements
+**********************************************************/
+@charset "utf-8";
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img {
+	margin: 0;
+	padding: 0;
+}
+html{height:100%;}
+* {
+	-webkit-user-select: none; /* Prevent copy paste for all elements except text fields */
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+body {
+	overflow-x: hidden;
+	-webkit-text-size-adjust: none;
+	font: normal 14px/18px Helvetica, Arial, sans-serif;
+	color: #232332;
+	display: -webkit-box;
+	-webkit-box-orient: vertical; 
+	-webkit-box-align: stretch;
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	min-width: 320px;
+}
+input, textarea {
+	-webkit-user-select: text;
+}
+img {
+	border: none;
+}
+button {
+	border: none;
+}
+*:focus {
+	outline: none;
+}
+a {
+	text-decoration: none;
+}
+p {
+	font: normal 14px/18px Arial, Helvetica, sans-serif;
+	color: #333;
+	background: transparent;
+}
+table {
+	border-collapse: 0;
+	border-spacing: 0;
+	caption-side: top;
+	empty-cells: show;
+}
+li {
+	list-style: none;
+}
+input.hs-ui-forms[type=checkbox], input.hs-ui-forms[type=radio] {
+	-webkit-appearance: none;
+	opacity: .0;
+	width: 30px;
+	height: 30px;
+	position: absolute;
+}
+input.hs-ui-forms[type=checkbox] + label, input.hs-ui-forms[type=radio] + label {
+	display: inline-block;
+	height: 30px;
+}
+input.hs-ui-forms[type=checkbox] + label::before, input.hs-ui-forms[type=radio] + label::before {
+	content: "";
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 30px;
+	width: 30px;
+	height: 30px;
+	background-size: 30px 60px;
+	background-image: url("../images/form_checkbox.png");
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+}
+input.hs-ui-forms[type=radio] + label::before {
+	background-image: url(../images/form_radio.png);
+}
+input.hs-ui-forms[type=checkbox] + label::before {
+	background-image: url(../images/form_checkbox.png);
+}
+input.hs-ui-forms[type=checkbox]:checked +label::before, input.hs-ui-forms[type=radio]:checked +label::before {
+	background-position: 0px -30px;
+}
+input.hs-ui-forms[type=checkbox]:hover:checked +label::before, input.hs-ui-forms[type=checkbox]:focus:checked +label::before, input.hs-ui-forms[type=checkbox]:checked :hover+label::before, input.hs-ui-forms[type=checkbox]:focus:checked +label::before, input.hs-ui-forms[type=radio]:checked +label::before, input.hs-ui-forms[type=radio]:focus:checked +label::before, input.hs-ui-forms[type=radio]:checked :hover+label::before, input.hs-ui-forms[type=radio]:focus:checked +label::before {
+	background-position: 0px -30px;
+}
+input.hs-ui-forms[type=checkbox]:disabled + label, input.hs-ui-forms[type=checkbox]:disabled:checked + label, input.hs-ui-forms[type=checkbox]:hover:disabled:checked + label, input.hs-ui-forms[type=checkbox]:focus:disabled:checked + label, input.hs-ui-forms[type=checkbox]:disabled:checked + label:hover, input.hs-ui-forms[type=checkbox]:disabled:checked + label:hover:active, input.hs-ui-forms[type=radio]:disabled + label, input.hs-ui-forms[type=radio]:disabled:checked + label, input.hs-ui-forms[type=radio]:hover:disabled:checked + label, input.hs-ui-forms[type=radio]:focus:disabled:checked + label, input.hs-ui-forms[type=radio]:disabled:checked + label:hover, input.hs-ui-forms[type=radio]:disabled:checked + label:hover:active {
+	background-position: 0 -30px;
+	opacity: .5 !important;
+}

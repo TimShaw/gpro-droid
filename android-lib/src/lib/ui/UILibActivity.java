@@ -16,6 +16,7 @@ import lib.func.contact.ContactActivity;
 import lib.func.event.TestTouchEventApp;
 import lib.func.floatondesktop.FloatOnDescktopActivity;
 import lib.func.handwrite.HandwritingActivity;
+import lib.func.https.HttpsActivity;
 import lib.func.jni.JniActivity;
 import lib.func.loadlocale.LoadLocaleActivity;
 import lib.func.looper.MessageQueue_TestActivity;
@@ -72,8 +73,22 @@ public class UILibActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        Intent i = new Intent("lib.func.screensaver.ScreenSaverService");
-        startService(i);
+        /*
+         * close screensaver service
+         * Intent i = new Intent("lib.func.screensaver.ScreenSaverService");
+        startService(i);*/
+        
+        
+        Button https = (Button)findViewById(R.id.https);
+        https.setOnClickListener(new OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,HttpsActivity.class);
+                startActivity(intent);
+            }
+        });
         
         Button app_musicplayer = (Button)findViewById(R.id.app_musicplayer);
         app_musicplayer.setOnClickListener(new OnClickListener()

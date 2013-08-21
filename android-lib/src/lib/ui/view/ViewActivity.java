@@ -72,6 +72,17 @@ public class ViewActivity extends Activity {
             }
         });
         
+        Button kline = (Button)findViewById(R.id.kline);
+        kline.setOnClickListener(new OnClickListener()
+        {
+            
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(me,KLineActivity.class);
+                startActivity(intent);
+            }
+        });
 	}
 
 }
