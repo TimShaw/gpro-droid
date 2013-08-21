@@ -1,6 +1,12 @@
 package lib.func.https;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
@@ -36,12 +42,42 @@ public class HttpsActivity extends Activity{
     {
         super.onCreate(savedInstanceState);
         
+        
+        /**
+         * 信任所有的，有待修改。
+         * 
+         */
         HostnameVerifier hostnameVerifier = org.apache.http.conn.ssl.SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER;
 
         DefaultHttpClient client = new DefaultHttpClient();
 
         SchemeRegistry registry = new SchemeRegistry();
-        SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+        KeyStore trustStore = null;
+		try {
+			trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
+			trustStore.load(null, null);
+		} catch (KeyStoreException e1) {
+			e1.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+        //SSLSocketFactory socketFactory = SSLSocketFactory.getSocketFactory();
+        SSLSocketFactory socketFactory= null;
+		try {
+			socketFactory = new MySSLSocketFactory(trustStore);
+		} catch (KeyManagementException e1) {
+			e1.printStackTrace();
+		} catch (UnrecoverableKeyException e1) {
+			e1.printStackTrace();
+		} catch (NoSuchAlgorithmException e1) {
+			e1.printStackTrace();
+		} catch (KeyStoreException e1) {
+			e1.printStackTrace();
+		}
         socketFactory.setHostnameVerifier((X509HostnameVerifier) hostnameVerifier);
         registry.register(new Scheme("https", socketFactory, 443));
         SingleClientConnManager mgr = new SingleClientConnManager(client.getParams(), registry);
