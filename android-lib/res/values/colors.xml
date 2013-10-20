@@ -23,5 +23,11 @@
 	<color name="cyan">#00ffff</color>
 	
 	<color name="window_bgcolor">#ffffff</color>
+	
+	<color name="button_pressed_start_color">#FFE577</color>
+    <color name="button_pressed_end_color">#FFE577</color>
+	<color name="button_defalut_start_color">#92C357</color>
+    <color name="button_defalut_end_color">#92C357</color>
+	
     <!-- <color name="tab_bg_hover_color">#fdfaf8</color> -->
 </resources>

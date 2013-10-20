@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;

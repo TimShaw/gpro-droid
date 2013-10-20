@@ -1,6 +1,6 @@
 package lib.ui.layout;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;

@@ -1,5 +1,6 @@
 package lib.ui;
 
+import android.lib.R;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 

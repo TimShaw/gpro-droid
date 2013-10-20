@@ -1,6 +1,6 @@
 package lib.ui.view;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

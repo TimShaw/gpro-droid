@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import lib.LibConstants;
 import lib.func.contact.po.PhoneContact;
 import lib.func.contact.po.PhoneContactData;
 import lib.func.contact.po.PhoneContactList;
@@ -33,7 +34,6 @@ import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.text.TextUtils;
 import android.util.Log;
-import config.Constants;
 
 public class ContactDao {
 
@@ -363,7 +363,7 @@ public class ContactDao {
                 PhoneContactData data = new PhoneContactData();
                 data.setDataCategoryId(type);
                 data.setDataCustomLabel(typeLabel);
-                data.setDataTotalType(Constants.CONTACT_DATA_TOATAL_TYPE_ADDRESS);
+                data.setDataTotalType(LibConstants.CONTACT_DATA_TOATAL_TYPE_ADDRESS);
                 String dataValue = country+","+region+","+city+","+street+","+postCode;
                 data.setDataValue(dataValue);
                 datas.add(data);
@@ -406,7 +406,7 @@ public class ContactDao {
                 PhoneContactData data = new PhoneContactData();
                 data.setDataCategoryId(emailType);
                 data.setDataCustomLabel(emailTypeLabel);
-                data.setDataTotalType(Constants.CONTACT_DATA_TOATAL_TYPE_EMAIL);
+                data.setDataTotalType(LibConstants.CONTACT_DATA_TOATAL_TYPE_EMAIL);
                 data.setDataValue(emailValue);
                 datas.add(data);
                 Log.i(TAG, "emailType:" + emailType + ",emailValue"
@@ -448,7 +448,7 @@ public class ContactDao {
                 PhoneContactData data = new PhoneContactData();
                 data.setDataCategoryId(type);
                 data.setDataCustomLabel(typeLabel);
-                data.setDataTotalType(Constants.CONTACT_DATA_TOATAL_TYPE_IM);
+                data.setDataTotalType(LibConstants.CONTACT_DATA_TOATAL_TYPE_IM);
                 data.setDataValue(dataValue);
                 datas.add(data);
                 Log.i(TAG,"protocol:"+protocol+",date:"+dataValue+",type:"+type+",typeLabel:"+typeLabel);
@@ -490,7 +490,7 @@ public class ContactDao {
                 PhoneContactData data = new PhoneContactData();
                 data.setDataCategoryId(type);
                 data.setDataCustomLabel(typeLabel);
-                data.setDataTotalType(Constants.CONTACT_DATA_TOATAL_TYPE_ORG);
+                data.setDataTotalType(LibConstants.CONTACT_DATA_TOATAL_TYPE_ORG);
                 data.setDataValue(company+","+title);
                 datas.add(data);
                 Log.i(TAG,"company:"+company+",title:"+title+",type:"+type+",typeLabel:"+typeLabel);
@@ -579,7 +579,7 @@ public class ContactDao {
                 PhoneContactData data = new PhoneContactData();
                 data.setDataCategoryId(phoneType);
                 data.setDataCustomLabel(phoneTypeLabel);
-                data.setDataTotalType(Constants.CONTACT_DATA_TOATAL_TYPE_TEL);
+                data.setDataTotalType(LibConstants.CONTACT_DATA_TOATAL_TYPE_TEL);
                 data.setDataValue(phoneNumber);
                 datas.add(data);
                 Log.i(TAG,"phoneNumber:"+phoneNumber+",phoneType:"+phoneType+",phoneTypeLabel:"+phoneTypeLabel);

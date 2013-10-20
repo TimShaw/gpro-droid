@@ -3,7 +3,7 @@ package lib.ui.select;
 import java.util.ArrayList;
 import java.util.List;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;

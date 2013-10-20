@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import lib.Tool;
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;

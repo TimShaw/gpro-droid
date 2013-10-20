@@ -1,6 +1,6 @@
 package lib.ui.menu;
 
-import lib.ui.R;
+import android.lib.R;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;

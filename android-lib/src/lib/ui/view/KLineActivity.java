@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import lib.ui.R;
+import android.lib.R;
 import lib.ui.view.KLineView.KLineItemData;
 import lib.ui.view.KLineView.MoveListener;
 import android.app.Activity;

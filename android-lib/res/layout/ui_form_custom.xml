@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+     <Button
+            android:id="@+id/login"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ui_shape_button"
+            android:text="登录" />
+     
+     <EditText
+        android:id="@+id/username"
+		android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_edittext_shape"
+        android:ems="10"
+        android:hint="用户名"
+        android:inputType="textPersonName" >
+    </EditText>
+     
+
+</LinearLayout>

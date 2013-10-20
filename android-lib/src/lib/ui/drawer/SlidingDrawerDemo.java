@@ -1,6 +1,6 @@
 package lib.ui.drawer;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;

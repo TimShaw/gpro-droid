@@ -1,6 +1,6 @@
 package lib.func.event;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.os.Bundle;
 

@@ -1,6 +1,6 @@
 package lib.func.animation;
 
-import lib.ui.R;
+import android.lib.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;

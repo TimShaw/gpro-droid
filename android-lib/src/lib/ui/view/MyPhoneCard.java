@@ -1,6 +1,6 @@
 package lib.ui.view;
 
-import lib.ui.R;
+import android.lib.R;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string-array name="columns">
+       <item>wifiLink</item>
+       <item>readGlass</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+       <item>viewFlipper</item>
+   </string-array>
+   <string-array name="columnClasses">
+       <item>lib.func.wifi_link.WifiActivity</item>
+       <item>lib.func.readglass.ReadGlassActivity</item>
+       <item>lib.ui.slide.ViewFlipperActivity</item>
+   </string-array>
+</resources>

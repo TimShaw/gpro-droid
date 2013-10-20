@@ -1,6 +1,6 @@
 package lib.func.handwrite;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;

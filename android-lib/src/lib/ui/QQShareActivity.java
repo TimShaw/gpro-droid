@@ -1,6 +1,7 @@
 package lib.ui;
 
 import android.app.Activity;
+import android.lib.R;
 import android.os.Bundle;
 import android.webkit.WebView;
 

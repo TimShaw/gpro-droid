@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.lib.R;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;

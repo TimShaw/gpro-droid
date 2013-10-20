@@ -1,6 +1,6 @@
 package lib.ui.tab;
 
-import lib.ui.R;
+import android.lib.R;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;

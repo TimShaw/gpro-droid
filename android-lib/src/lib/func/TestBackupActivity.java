@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.ContentValues;

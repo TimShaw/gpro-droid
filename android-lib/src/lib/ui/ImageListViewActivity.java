@@ -3,6 +3,7 @@ package lib.ui;
 import lib.func.cache.image.ImageLoader;
 import android.app.Activity;
 import android.content.Context;
+import android.lib.R;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

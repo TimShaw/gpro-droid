@@ -3,7 +3,7 @@ package lib.ui.location;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-import lib.ui.R;
+import android.lib.R;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;

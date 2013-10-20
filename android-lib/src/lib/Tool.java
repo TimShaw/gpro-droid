@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
@@ -16,6 +17,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.AssetManager;
+import android.graphics.Color;
 import android.os.Vibrator;
 import android.util.Log;
 
@@ -32,6 +34,15 @@ public class Tool
     private final static String TAG = Tool.class.getSimpleName();
 
     private static String       _dataDir;
+    
+    private static boolean isFirstRun;
+    
+    public static boolean isFirstRun(){
+    	return isFirstRun;
+    }
+    public static void setFirstRun(){
+    	isFirstRun = true;
+    }
 
     public static String getDataDir(Context ctx)
     {
@@ -222,5 +233,125 @@ public class Tool
     public static void vibrate(Context ctx, int t){    
         Vibrator v = (Vibrator) ctx.getSystemService(Context.VIBRATOR_SERVICE);    
         v.vibrate(t);  
+    }
+    
+    
+    /**
+	 * Check whether the specific string is ip address
+	 * @param str
+	 * @return
+	 */
+	public synchronized static boolean isIP(String str) {
+		Pattern pattern = Pattern.compile("\\b((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])" +
+				"\\.((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+				"((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
+				"((?!\\d\\d\\d)\\d+|1\\d\\d|2[0-4]\\d|25[0-5])\\b");
+		return pattern.matcher(str).matches();
+	}
+
+	public synchronized static boolean isMAC(String str) {
+
+		str = str.trim();
+		if (str.length() != 12) {
+			return false;
+		}
+
+		char[] chars = new char[12];
+		str.getChars(0, 12, chars, 0);
+		for (int i = 0; i < chars.length; i++) {
+			if (!((chars[i]>='0' && chars[i]<='9') || (chars[i]>='A' && chars[i]<='F') || (chars[i]>='a' && chars[i]<='f'))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * For custom purposes. Not used by ColorPickerPreferrence
+	 * @param color
+	 * @author Unknown
+	 */
+    public static String convertToARGB(int color) {
+        String alpha = Integer.toHexString(Color.alpha(color));
+        String red = Integer.toHexString(Color.red(color));
+        String green = Integer.toHexString(Color.green(color));
+        String blue = Integer.toHexString(Color.blue(color));
+
+        if (alpha.length() == 1) {
+            alpha = "0" + alpha;
+        }
+
+        if (red.length() == 1) {
+            red = "0" + red;
+        }
+
+        if (green.length() == 1) {
+            green = "0" + green;
+        }
+
+        if (blue.length() == 1) {
+            blue = "0" + blue;
+        }
+
+        return "#" + alpha + red + green + blue;
+    }
+
+    /**
+	 * For custom purposes. Not used by ColorPickerPreference
+	 * @param color
+	 * @author Charles Rosaaen
+	 * @return A string representing the hex value of color,
+	 * without the alpha value
+	 */
+    public static String convertToRGB(int color) {
+        String red = Integer.toHexString(Color.red(color));
+        String green = Integer.toHexString(Color.green(color));
+        String blue = Integer.toHexString(Color.blue(color));
+
+        if (red.length() == 1) {
+            red = "0" + red;
+        }
+
+        if (green.length() == 1) {
+            green = "0" + green;
+        }
+
+        if (blue.length() == 1) {
+            blue = "0" + blue;
+        }
+
+        return "#" + red + green + blue;
+    }
+
+    /**
+     * For custom purposes. Not used by ColorPickerPreferrence
+     * @param argb
+     * @throws NumberFormatException
+     * @author Unknown
+     */
+    public static int convertToColorInt(String argb) throws NumberFormatException {
+
+    	if (argb.startsWith("#")) {
+    		argb = argb.replace("#", "");
+    	}
+
+        int alpha = -1, red = -1, green = -1, blue = -1;
+
+        if (argb.length() == 8) {
+            alpha = Integer.parseInt(argb.substring(0, 2), 16);
+            red = Integer.parseInt(argb.substring(2, 4), 16);
+            green = Integer.parseInt(argb.substring(4, 6), 16);
+            blue = Integer.parseInt(argb.substring(6, 8), 16);
+        }
+        else if (argb.length() == 6) {
+            alpha = 255;
+            red = Integer.parseInt(argb.substring(0, 2), 16);
+            green = Integer.parseInt(argb.substring(2, 4), 16);
+            blue = Integer.parseInt(argb.substring(4, 6), 16);
+        }
+        else
+        	throw new NumberFormatException("string " + argb + "did not meet length requirements");
+
+        return Color.argb(alpha, red, green, blue);
     }
 }

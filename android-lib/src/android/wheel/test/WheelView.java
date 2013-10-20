@@ -3,7 +3,7 @@ package android.wheel.test;
 import java.util.LinkedList;
 import java.util.List;
 
-import lib.ui.R;
+import android.lib.R;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Canvas;

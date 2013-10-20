@@ -1,6 +1,6 @@
 package lib.widget;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;

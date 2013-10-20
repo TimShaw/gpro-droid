@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import lib.ui.R;
+import android.lib.R;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
